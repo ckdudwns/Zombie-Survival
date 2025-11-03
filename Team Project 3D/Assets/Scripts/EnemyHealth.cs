@@ -1,14 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-// 보급 상자와 드롭 확률을 묶는 데이터 구조
-[System.Serializable]
-public struct LootBoxDrop
-{
-    public GameObject lootBoxPrefab;
-    [Range(0f, 100f)]
-    public float dropChance;
-}
+// (참고) 기존의 LootBoxDrop 구조체는 더 이상 사용하지 않습니다.
+// [System.Serializable]
+// public struct LootBoxDrop { ... }
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -16,23 +11,22 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 100;
 
     [Header("아이템 드롭 설정")]
-    [Tooltip("설정된 확률에 따라 드롭될 보급 상자입니다.")]
-    public LootBoxDrop lootBoxDrop;
+    [Tooltip("모든 적이 공통으로 사용할 '빈 상자' LootBox 프리팹")]
+    public GameObject lootBoxPrefab; // 공통 루트박스 프리팹
 
-    [Tooltip("보급 상자 드롭에 실패했을 때 대신 드롭될 코인 프리팹입니다.")]
-    public GameObject coinPrefab;
+    [Tooltip("이 적이 실제로 드롭할 아이템 목록 데이터 (LootTable 에셋)")]
+    public LootTable enemyLootTable; // 이 적 전용 루트 테이블
+
+    [Tooltip("루트박스 드롭 확률")]
+    [Range(0f, 100f)]
+    public float dropChance = 100f;
 
     [Header("드롭 위치 설정")]
     [Tooltip("아이템을 드롭할 때 감지할 바닥의 레이어입니다.")]
     public LayerMask groundLayer;
 
-    // --- 여기가 수정된 부분입니다 ---
-    [Tooltip("코인이 바닥에서 얼마나 위쪽에 생성될지 정합니다.")]
-    public float coinDropHeightOffset = 0.1f;
-
     [Tooltip("상자가 바닥에서 얼마나 위쪽에 생성될지 정합니다.")]
     public float lootBoxDropHeightOffset = 0.5f;
-    // --- 여기까지 ---
 
     private int currentHealth;
 
@@ -43,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
+        // 테스트용: K키로 즉시 사망
         if (Input.GetKeyDown(KeyCode.K))
         {
             Die();
@@ -52,7 +47,9 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (currentHealth <= 0) return;
+
         currentHealth -= damage;
+
         if (currentHealth <= 0)
         {
             Die();
@@ -61,45 +58,53 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        // 중복 사망 방지
         if (!enabled) return;
 
         Debug.Log(gameObject.name + "가 쓰러졌습니다.");
-        HandleDrops();
-        enabled = false;
-        Destroy(gameObject);
+        HandleDrops(); // 드롭 로직 호출
+
+        enabled = false; // 스크립트 비활성화
+        Destroy(gameObject); // 오브젝트 파괴
     }
 
-    // 아이템 드롭을 총괄하는 함수
+    /// <summary>
+    /// 아이템 드롭을 총괄하는 함수 (LootTable 방식)
+    /// </summary>
     void HandleDrops()
     {
-        if (lootBoxDrop.lootBoxPrefab != null && lootBoxDrop.dropChance > 0)
+        // 루트박스 프리팹과 루트 테이블이 모두 연결되어 있는지 확인
+        if (lootBoxPrefab != null && enemyLootTable != null)
         {
             float randomRoll = Random.Range(0f, 100f);
-            if (randomRoll <= lootBoxDrop.dropChance)
+            if (randomRoll <= dropChance)
             {
-                // 상자를 드롭할 때는 상자 높이 오프셋을 전달
-                DropSpecificItem(lootBoxDrop.lootBoxPrefab, lootBoxDropHeightOffset);
-                return;
+                // LootBox를 생성하고, 이 적의 LootTable을 주입합니다.
+                DropLootBox(lootBoxPrefab, lootBoxDropHeightOffset, enemyLootTable);
+            }
+            else
+            {
+                Debug.Log(gameObject.name + "가 루트박스를 드롭하지 않았습니다. (확률 실패)");
             }
         }
-
-        if (coinPrefab != null)
+        else
         {
-            // 코인을 드롭할 때는 코인 높이 오프셋을 전달
-            DropSpecificItem(coinPrefab, coinDropHeightOffset);
+            Debug.LogWarning(gameObject.name + "의 EnemyHealth에 lootBoxPrefab 또는 enemyLootTable이 연결되지 않았습니다.");
         }
     }
 
-    // 아이템을 실제로 바닥에 생성하는 함수 (높이 오프셋 값을 받도록 수정)
-    void DropSpecificItem(GameObject itemPrefab, float heightOffset)
+    /// <summary>
+    /// LootBox를 생성하고 LootTable 데이터를 주입하는 함수
+    /// </summary>
+    void DropLootBox(GameObject itemPrefab, float heightOffset, LootTable tableToAssign)
     {
-        if (itemPrefab == null) return;
-
         Vector3 dropPosition = transform.position;
         RaycastHit hit;
+
+        // 바닥 감지
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 100f, groundLayer))
         {
-            // 전달받은 heightOffset 값을 사용하여 생성 높이를 조절
+            // 바닥에서 설정한 높이만큼 위에 생성
             dropPosition = hit.point + new Vector3(0, heightOffset, 0);
         }
         else
@@ -107,6 +112,19 @@ public class EnemyHealth : MonoBehaviour
             Debug.LogWarning(gameObject.name + " 아래에서 바닥을 찾지 못해 공중에 아이템을 드롭합니다.");
         }
 
-        Instantiate(itemPrefab, dropPosition, Quaternion.identity);
+        // 1. LootBox 인스턴스 생성
+        GameObject boxInstance = Instantiate(itemPrefab, dropPosition, Quaternion.identity);
+
+        // 2. 생성된 LootBox에서 LootBox.cs 스크립트를 찾음
+        LootBox boxScript = boxInstance.GetComponent<LootBox>();
+        if (boxScript != null)
+        {
+            // 3. (핵심) LootBox에 이 적의 LootTable 데이터를 주입
+            boxScript.Initialize(tableToAssign);
+        }
+        else
+        {
+            Debug.LogError("LootBox 프리팹에 LootBox.cs 스크립트가 없습니다!");
+        }
     }
 }
