@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+// IInteractable 인터페이스를 상속받도록 추가합니다.
+public class Trap : MonoBehaviour, IInteractable
 {
     [Header("함정 설정")]
     [Tooltip("이 반경 안에 있는 모든 적에게 영향을 줍니다.")]
@@ -12,34 +13,31 @@ public class Trap : MonoBehaviour
     [Tooltip("함정을 발동시켰을 때 재생할 사운드 클립입니다.")]
     public AudioClip trapSound;
 
-    private void OnTriggerEnter(Collider other)
+    // --- OnTriggerEnter는 삭제하고 아래 함수를 추가 ---
+    // IInteractable 인터페이스의 필수 구현 함수
+    public void Interact(GameObject player)
     {
-        // 플레이어가 아이템을 먹었을 때
-        if (other.CompareTag("Player"))
-        {
-            ActivateTrap();
-            Destroy(gameObject);
-        }
+        // (플레이어가 함정을 줍는 것이 아니라 '발동'시키는 것이므로
+        // player 매개변수를 사용할 필요는 없지만, 인터페이스 규격상 받아야 합니다.)
+
+        ActivateTrap();
+        Destroy(gameObject); // 함정 아이템은 발동 즉시 사라짐
     }
 
     void ActivateTrap()
     {
-        Debug.Log("함정 발동!");
         // 1. 사운드 재생
         if (trapSound != null)
         {
-            // 3D 공간의 아이템 위치에서 사운드를 한 번 재생하고 사라지게 함
             AudioSource.PlayClipAtPoint(trapSound, transform.position);
         }
 
         // 2. 주변의 모든 적 찾기
-        // alertRadius 반경 안의 모든 콜라이더를 찾아냄
         Collider[] colliders = Physics.OverlapSphere(transform.position, alertRadius);
 
         // 3. 찾은 적들에게 강화 효과 적용
         foreach (Collider col in colliders)
         {
-            // 찾은 콜라이더에서 EnemyAI 스크립트를 가져옴
             Enemy enemy = col.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
@@ -47,9 +45,11 @@ public class Trap : MonoBehaviour
                 enemy.ActivateFrenzyMode(effectDuration);
             }
         }
+
+        Debug.Log("함정 발동! 주변 적들이 광분합니다.");
     }
 
-    // Scene 뷰에서 함정의 범위를 시각적으로 표시
+    // Scene 뷰에서 함정의 범위를 시각적으로 표시 (변경 없음)
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
