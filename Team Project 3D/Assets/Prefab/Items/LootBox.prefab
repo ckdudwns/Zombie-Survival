@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 609839371307090496}
   - component: {fileID: 90353771861381468}
   - component: {fileID: 2998804784959225499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LootBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4402caab90ce347b86468107035f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCoinValue: 50
-  maxCoinValue: 200
   possibleItems:
-  - itemPrefab: {fileID: 8914326388693541135, guid: 0c762045134762e45beee8451bf12451, type: 3}
+  - itemData: {fileID: 11400000, guid: 91d31d150418a5047a8b2fe5e68713d1, type: 2}
+    dropChance: 60
+  - itemData: {fileID: 11400000, guid: 4cf31510a43f7d143818a273c8395ece, type: 2}
     dropChance: 20
-  - itemPrefab: {fileID: 8914326388693541135, guid: c25e82261f8b2aa4e84f604c78c41327, type: 3}
+  - itemData: {fileID: 11400000, guid: 98e216d1e17c75f478e322a20af93635, type: 2}
     dropChance: 20
 --- !u!54 &90353771861381468
 Rigidbody:
