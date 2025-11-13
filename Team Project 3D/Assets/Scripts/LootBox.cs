@@ -1,28 +1,8 @@
 using UnityEngine;
 
-// ----------------------------------------------------------------------
-// (중요!) 오류가 발생한 'LootTableEntry'의 정의입니다.
-// LootTable.cs가 참조할 수 있도록 class 바깥에 선언합니다.
-// ----------------------------------------------------------------------
-[System.Serializable]
-public struct LootTableEntry
-{
-    [Tooltip("드롭될 아이템 (ItemData 에셋)")]
-    public ItemData itemData;
-
-    [Range(0f, 100f)]
-    public float dropChance;
-}
-// ----------------------------------------------------------------------
-
-
 // IInteractable 인터페이스를 상속받습니다.
 public class LootBox : MonoBehaviour, IInteractable
 {
-    // (삭제됨) 아이템 목록이 EnemyHealth로부터 주입되므로, 
-    // LootBox 자체는 더 이상 아이템 목록을 가지고 있지 않습니다.
-    // public LootTableEntry[] possibleItems;
-
     private LootTable assignedLootTable; // EnemyHealth로부터 주입받을 루트 테이블
     private bool isOpened = false;
 
@@ -50,40 +30,59 @@ public class LootBox : MonoBehaviour, IInteractable
             return;
         }
 
-        // 2. 주입받은 LootTable을 사용해 아이템 드롭 시도
-        DropRandomItem(invManager, assignedLootTable);
+        // --- (수정됨) ---
+        // DropRandomItem 함수에 'player'를 전달해줍니다.
+        // (총알을 줘야 할 수도 있으므로 PlayerShooting 스크립트를 찾아야 함)
+        DropRandomItem(invManager, assignedLootTable, player);
+        // --- (여기까지) ---
 
         // 3. 상자 오브젝트 파괴
         Destroy(gameObject);
     }
 
     /// <summary>
-    /// 주입받은 LootTable을 기반으로 인벤토리에 아이템을 추가합니다.
+    /// 주입받은 LootTable을 기반으로 보상을 지급합니다.
     /// </summary>
-    void DropRandomItem(InventoryManager invManager, LootTable table)
+    void DropRandomItem(InventoryManager invManager, LootTable table, GameObject player)
     {
-        // EnemyHealth로부터 LootTable을 잘 받았는지 확인
         if (table == null)
         {
-            Debug.LogWarning("LootBox에 LootTable이 할당되지 않았습니다. (EnemyHealth.cs 확인 필요)");
+            Debug.LogWarning("LootBox에 LootTable이 할당되지 않았습니다.");
             return;
         }
 
         float randomRoll = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
 
-        // 'table.possibleItems' (주입받은 테이블의 목록)을 순회합니다.
         foreach (var drop in table.possibleItems)
         {
             cumulativeChance += drop.dropChance;
             if (randomRoll <= cumulativeChance)
             {
-                if (drop.itemData != null)
+                // --- (핵심 수정 부분) ---
+                // 보상 타입(LootType)에 따라 다른 처리를 합니다.
+                switch (drop.type)
                 {
-                    // (핵심) 아이템을 생성하는 대신 인벤토리 매니저에 바로 추가
-                    invManager.AddItem(drop.itemData);
-                    Debug.Log("상자에서 " + drop.itemData.itemName + " 아이템을 획득했습니다!");
+                    // 1. 타입이 'Item'일 경우 (음식 등)
+                    case LootType.Item:
+                        if (drop.itemData != null)
+                        {
+                            invManager.AddItem(drop.itemData);
+                            Debug.Log("상자에서 " + drop.itemData.itemName + " 아이템을 획득했습니다!");
+                        }
+                        break;
+
+                    // 2. 타입이 'Ammo'일 경우
+                    case LootType.Ammo:
+                        PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
+                        if (playerShooting != null && drop.ammoAmount > 0)
+                        {
+                            playerShooting.AddAmmo(drop.ammoAmount); // PlayerShooting의 AddAmmo 함수 호출
+                            Debug.Log("상자에서 총알 " + drop.ammoAmount + "발을 획득했습니다!");
+                        }
+                        break;
                 }
+                // --- (여기까지) ---
                 return; // 아이템 하나만 지급
             }
         }

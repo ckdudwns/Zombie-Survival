@@ -22,8 +22,18 @@ public class Gun : MonoBehaviour
     [Tooltip("발사체 하나당 데미지입니다.")]
     public int damage = 10;
 
+    [Header("탄약 설정")] // 헤더를 하나로 합쳤습니다.
     [Tooltip("한 탄창에 들어가는 최대 총알 수입니다.")]
     public int maxAmmo = 30;
+
+    [Tooltip("소지 가능한 최대 예비탄창 수")]
+    public int maxReserveAmmo = 100;
+
+    // --- (여기가 추가된 부분입니다) ---
+    [Tooltip("게임 시작 시 탄창에 채워져 있을 총알 수")]
+    public int startMagazineAmmo = 10;
+    // --- (여기까지) ---
+
     [Tooltip("재장전에 걸리는 시간(초)입니다.")]
     public float reloadTime = 1.5f;
     [Tooltip("연사 속도 (초당 발사 수).")]
@@ -40,11 +50,9 @@ public class Gun : MonoBehaviour
     public float crouchingRecoil = 0.2f;
     public float sprintingRecoil = 4.0f;
 
-    // --- 여기가 추가된 부분입니다 ---
     [Header("조준경 설정")]
     [Tooltip("이 총이 조준경(줌)을 사용하는지 여부입니다.")]
     public bool isScopable = false;
-    // --- 여기까지 ---
 
     [Header("총기 필수 요소")]
     public Transform firePoint;

@@ -1,4 +1,3 @@
-// TrapItemData.cs
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New TrapItem", menuName = "Inventory/Trap Item")]
@@ -15,10 +14,11 @@ public class TrapItemData : ItemData
         }
 
         // TODO: 플레이어 앞 바닥에 trapPrefab을 설치(Instantiate)하는 로직 구현
-        // 예: 카메라 Raycast로 바닥 위치를 찾은 뒤 Instantiate
+        // 이 예시에서는 플레이어의 발밑에 설치합니다.
+        Instantiate(trapPrefab, player.transform.position, player.transform.rotation);
         Debug.Log(player.name + "이 " + itemName + "을(를) 설치했습니다.");
 
-        // TODO: 아이템 사용 후 인벤토리에서 제거 로직 필요
+        // (삭제) 이 코드는 InventoryManager.UseItem()으로 이동했습니다.
         // InventoryManager.instance.RemoveItem(this);
     }
 }
