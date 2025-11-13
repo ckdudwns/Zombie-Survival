@@ -1954,6 +1954,8 @@ MonoBehaviour:
   range: 100
   damage: 100
   maxAmmo: 8
+  maxReserveAmmo: 150
+  startMagazineAmmo: 50
   reloadTime: 3
   fireRate: 1
   projectilesPerShot: 8
@@ -1963,8 +1965,8 @@ MonoBehaviour:
   sprintingRecoil: 4
   isScopable: 1
   firePoint: {fileID: 2216986161551010650}
-  bulletPrefab: {fileID: 8365487098377850719, guid: 4be91f3225c30974793b63c59c20f313, type: 3}
-  bloodImpactPrefab: {fileID: 5993781994947354154, guid: 5790b4d8211c18e45966876a39d4d72c, type: 3}
+  bulletPrefab: {fileID: 6661764628020572346, guid: 748bfe21ef61cc54f96670b6ecfcdc9d, type: 3}
+  bloodImpactPrefab: {fileID: 5993781994947354154, guid: 27003fed08a6c034db41ca69c5b04257, type: 3}
   genericImpactPrefab: {fileID: 0}
   crosshairSprite: {fileID: 21300000, guid: 8c89ed5746a4faa48bb97701cc2f2e35, type: 3}
   positionOffset: {x: -0.37, y: -0.22, z: 0.02}
