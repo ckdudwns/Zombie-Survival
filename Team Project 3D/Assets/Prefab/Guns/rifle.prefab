@@ -478,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026876610865046822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45, y: 0, z: 2.087}
+  m_LocalPosition: {x: 0.274, y: 0.237, z: 2.184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1428,6 +1428,8 @@ MonoBehaviour:
   range: 100
   damage: 10
   maxAmmo: 30
+  maxReserveAmmo: 500
+  startMagazineAmmo: 200
   reloadTime: 1.5
   fireRate: 10
   projectilesPerShot: 8
@@ -1437,10 +1439,10 @@ MonoBehaviour:
   sprintingRecoil: 4
   isScopable: 0
   firePoint: {fileID: 3318075087282921136}
-  bulletPrefab: {fileID: 8365487098377850719, guid: 4be91f3225c30974793b63c59c20f313, type: 3}
+  bulletPrefab: {fileID: 6661764628020572346, guid: 748bfe21ef61cc54f96670b6ecfcdc9d, type: 3}
   bloodImpactPrefab: {fileID: 5993781994947354154, guid: 27003fed08a6c034db41ca69c5b04257, type: 3}
   genericImpactPrefab: {fileID: 0}
-  crosshairSprite: {fileID: 0}
+  crosshairSprite: {fileID: 21300000, guid: 8c89ed5746a4faa48bb97701cc2f2e35, type: 3}
   positionOffset: {x: -0.45, y: -0.2, z: -0.1}
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &2755600443795116162
