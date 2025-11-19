@@ -57,6 +57,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
+--- !u!1 &960655981167527777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
+  m_PrefabInstance: {fileID: 8482018064393609833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3828996991889056114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960655981167527777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14, y: 0.2, z: 0.33}
+  m_Center: {x: 0.12, y: 0, z: -0.4}
 --- !u!1 &8752543207271538488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
@@ -83,3 +101,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &7514506138573507717
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752543207271538488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Height: 2.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
