@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHitbox : MonoBehaviour
 {
-    public int damage = 10;
+    public int damage; // 좀비마다 주는 데미지를 다르게 하기 위해 지정하지 않음
 
     // Trigger가 다른 Collider(플레이어)와 충돌했을 때 호출
     private void OnTriggerEnter(Collider other)

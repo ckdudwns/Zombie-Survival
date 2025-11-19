@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     [Tooltip("이 거리 안으로 들어오면 이동을 멈추고 공격을 시작합니다.")]
     public float attackRange = 1.5f;
     [Tooltip("적의 이동 속도입니다.")]
-    public float moveSpeed = 3.5f;
+    public float moveSpeed; // 좀비마다 속도를 다르게 하기 위해 지정하지 않음
     [Tooltip("적이 플레이어를 향해 회전하는 속도입니다.")]
     public float rotationSpeed = 10f;
 
