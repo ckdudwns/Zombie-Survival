@@ -1,77 +1,77 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public enum FireMode
 {
-    Single, // ´Ü¹ß
-    Auto,   // ¿¬»ç
-    Spread  // »êÅº
+    Single, // ë‹¨ë°œ
+    Auto,   // ì—°ì‚¬
+    Spread  // ì‚°íƒ„
 }
 
 public class Gun : MonoBehaviour
 {
-    [Header("ÃÑ±â Á¤º¸")]
+    [Header("ì´ê¸° ì •ë³´")]
     public string gunName = "Rifle";
 
-    [Header("ÃÑ±â °íÀ¯ ´É·ÂÄ¡")]
+    [Header("ì´ê¸° ê³ ìœ  ëŠ¥ë ¥ì¹˜")]
     public FireMode fireMode = FireMode.Auto;
 
-    [Tooltip("ÃÑ¾Ë(·¹ÀÌÄ³½ºÆ®)ÀÌ µµ´ŞÇÏ´Â ÃÖ´ë »ç°Å¸®ÀÔ´Ï´Ù.")]
+    [Tooltip("ì´ì•Œ(ë ˆì´ìºìŠ¤íŠ¸)ì´ ë„ë‹¬í•˜ëŠ” ìµœëŒ€ ì‚¬ê±°ë¦¬ì…ë‹ˆë‹¤.")]
     public float range = 100f;
 
-    [Tooltip("¹ß»çÃ¼ ÇÏ³ª´ç µ¥¹ÌÁöÀÔ´Ï´Ù.")]
+    [Tooltip("ë°œì‚¬ì²´ í•˜ë‚˜ë‹¹ ë°ë¯¸ì§€ì…ë‹ˆë‹¤.")]
     public int damage = 10;
 
-    [Header("Åº¾à ¼³Á¤")] // Çì´õ¸¦ ÇÏ³ª·Î ÇÕÃÆ½À´Ï´Ù.
-    [Tooltip("ÇÑ ÅºÃ¢¿¡ µé¾î°¡´Â ÃÖ´ë ÃÑ¾Ë ¼öÀÔ´Ï´Ù.")]
+    [Header("íƒ„ì•½ ì„¤ì •")] // í—¤ë”ë¥¼ í•˜ë‚˜ë¡œ í•©ì³¤ìŠµë‹ˆë‹¤.
+    [Tooltip("í•œ íƒ„ì°½ì— ë“¤ì–´ê°€ëŠ” ìµœëŒ€ ì´ì•Œ ìˆ˜ì…ë‹ˆë‹¤.")]
     public int maxAmmo = 30;
 
-    [Tooltip("¼ÒÁö °¡´ÉÇÑ ÃÖ´ë ¿¹ºñÅºÃ¢ ¼ö")]
+    [Tooltip("ì†Œì§€ ê°€ëŠ¥í•œ ìµœëŒ€ ì˜ˆë¹„íƒ„ì°½ ìˆ˜")]
     public int maxReserveAmmo = 100;
 
-    // --- (¿©±â°¡ Ãß°¡µÈ ºÎºĞÀÔ´Ï´Ù) ---
-    [Tooltip("°ÔÀÓ ½ÃÀÛ ½Ã ÅºÃ¢¿¡ Ã¤¿öÁ® ÀÖÀ» ÃÑ¾Ë ¼ö")]
+    // --- (ì—¬ê¸°ê°€ ì¶”ê°€ëœ ë¶€ë¶„ì…ë‹ˆë‹¤) ---
+    [Tooltip("ê²Œì„ ì‹œì‘ ì‹œ íƒ„ì°½ì— ì±„ì›Œì ¸ ìˆì„ ì´ì•Œ ìˆ˜")]
     public int startMagazineAmmo = 10;
-    // --- (¿©±â±îÁö) ---
+    // --- (ì—¬ê¸°ê¹Œì§€) ---
 
-    [Tooltip("ÀçÀåÀü¿¡ °É¸®´Â ½Ã°£(ÃÊ)ÀÔ´Ï´Ù.")]
+    [Tooltip("ì¬ì¥ì „ì— ê±¸ë¦¬ëŠ” ì‹œê°„(ì´ˆ)ì…ë‹ˆë‹¤.")]
     public float reloadTime = 1.5f;
-    [Tooltip("¿¬»ç ¼Óµµ (ÃÊ´ç ¹ß»ç ¼ö).")]
+    [Tooltip("ì—°ì‚¬ ì†ë„ (ì´ˆë‹¹ ë°œì‚¬ ìˆ˜).")]
     public float fireRate = 10f;
 
-    [Header("¼¦°Ç Àü¿ë ¼³Á¤")]
-    [Tooltip("»êÅº(Spread) ¸ğµåÀÏ ¶§¸¸ »ç¿ë: ÇÑ ¹ø¿¡ ¹ß»çµÇ´Â Æç¸´(ÃÑ¾Ë) ¼ö")]
+    [Header("ìƒ·ê±´ ì „ìš© ì„¤ì •")]
+    [Tooltip("ì‚°íƒ„(Spread) ëª¨ë“œì¼ ë•Œë§Œ ì‚¬ìš©: í•œ ë²ˆì— ë°œì‚¬ë˜ëŠ” í ë¦¿(ì´ì•Œ) ìˆ˜")]
     public int projectilesPerShot = 8;
-    [Tooltip("ÃÑ¾ËÀÌ ÆÛÁö´Â Á¤µµ(ÁıÅºµµ). 0ÀÌ¸é Á¤È®È÷ Áß¾ÓÀ¸·Î ³ª°©´Ï´Ù.")]
+    [Tooltip("ì´ì•Œì´ í¼ì§€ëŠ” ì •ë„(ì§‘íƒ„ë„). 0ì´ë©´ ì •í™•íˆ ì¤‘ì•™ìœ¼ë¡œ ë‚˜ê°‘ë‹ˆë‹¤.")]
     public float spreadAngle = 5f;
 
-    [Header("¹İµ¿ ¼³Á¤")]
+    [Header("ë°˜ë™ ì„¤ì •")]
     public float normalRecoil = 1.5f;
     public float crouchingRecoil = 0.2f;
     public float sprintingRecoil = 4.0f;
 
-    [Header("Á¶ÁØ°æ ¼³Á¤")]
-    [Tooltip("ÀÌ ÃÑÀÌ Á¶ÁØ°æ(ÁÜ)À» »ç¿ëÇÏ´ÂÁö ¿©ºÎÀÔ´Ï´Ù.")]
+    [Header("ì¡°ì¤€ê²½ ì„¤ì •")]
+    [Tooltip("ì´ ì´ì´ ì¡°ì¤€ê²½(ì¤Œ)ì„ ì‚¬ìš©í•˜ëŠ”ì§€ ì—¬ë¶€ì…ë‹ˆë‹¤.")]
     public bool isScopable = false;
 
-    [Header("ÃÑ±â ÇÊ¼ö ¿ä¼Ò")]
+    [Header("ì´ê¸° í•„ìˆ˜ ìš”ì†Œ")]
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject bloodImpactPrefab;
     public GameObject genericImpactPrefab;
 
-    [Header("UI ¼³Á¤")]
+    [Header("UI ì„¤ì •")]
     public Sprite crosshairSprite;
 
-    [Header("À§Ä¡/È¸Àü ¿ÀÇÁ¼Â")]
+    [Header("ìœ„ì¹˜/íšŒì „ ì˜¤í”„ì…‹")]
     public Vector3 positionOffset;
     public Vector3 rotationOffset;
 
-    [Tooltip("ÃÑ±¸ È­¿° È¿°ú (ÆÄÆ¼Å¬ ½Ã½ºÅÛ)")]
+    [Tooltip("ì´êµ¬ í™”ì—¼ íš¨ê³¼ (íŒŒí‹°í´ ì‹œìŠ¤í…œ)")]
     public ParticleSystem muzzleFlashEffect;
 
-    [Header("¿Àµğ¿À Å¬¸³")]
-    public AudioClip fireSound;     // ¹ß»ç ¼Ò¸®
-    public AudioClip reloadSound;   // ÀçÀåÀü ¼Ò¸®
-    public AudioClip emptyClipSound; // ÅºÃ¢ÀÌ ºñ¾úÀ» ¶§ ³ª´Â "Å¬¸¯" ¼Ò¸®
+    [Header("ì˜¤ë””ì˜¤ í´ë¦½")]
+    public AudioClip fireSound;     // ë°œì‚¬ ì†Œë¦¬
+    public AudioClip reloadSound;   // ì¬ì¥ì „ ì†Œë¦¬
+    public AudioClip emptyClipSound; // íƒ„ì°½ì´ ë¹„ì—ˆì„ ë•Œ ë‚˜ëŠ” "í´ë¦­" ì†Œë¦¬
 }
