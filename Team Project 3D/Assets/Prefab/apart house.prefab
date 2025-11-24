@@ -1,0 +1,2445 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3224961771419630152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4054017358866886350}
+  m_Layer: 0
+  m_Name: apart house
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4054017358866886350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224961771419630152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 77.69977, y: 13.101404, z: 12.82323}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 740891083509860995}
+  - {fileID: 4502484138636660685}
+  - {fileID: 3023780074620418370}
+  - {fileID: 4367312277212052609}
+  - {fileID: 9163799162545776671}
+  - {fileID: 6829503113075723152}
+  - {fileID: 5944538637161618941}
+  - {fileID: 1282288946456427194}
+  - {fileID: 253099950309218352}
+  - {fileID: 8309796308547873365}
+  - {fileID: 6097273460457717323}
+  - {fileID: 6702721079439307296}
+  - {fileID: 8799208500373326964}
+  - {fileID: 6537453655327859371}
+  - {fileID: 1707909084871445493}
+  - {fileID: 8578427421867020066}
+  - {fileID: 5261449509027269853}
+  - {fileID: 5143231811515331420}
+  - {fileID: 2307229799624239910}
+  - {fileID: 7047567766297513253}
+  - {fileID: 6274913295175468514}
+  - {fileID: 375351704279583196}
+  - {fileID: 9195887834538907679}
+  - {fileID: 4462465448371841342}
+  - {fileID: 5022696573597345213}
+  - {fileID: 2331047126500085430}
+  - {fileID: 6170394357839667301}
+  - {fileID: 7720136062181894700}
+  - {fileID: 4900839981876618890}
+  - {fileID: 8374753167219604891}
+  - {fileID: 7711425532897264558}
+  - {fileID: 334882402706583223}
+  - {fileID: 9126088544923894076}
+  - {fileID: 3874441712189460084}
+  - {fileID: 231290345294497716}
+  - {fileID: 865313237861122764}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &109824456002831747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 269.38892
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (16)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &5261449509027269853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 109824456002831747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &901009432413204436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.082184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -464.12164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (28)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &4900839981876618890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 901009432413204436}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &952075216138087651
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 202.68893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -404.0079
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (24)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &5022696573597345213 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 952075216138087651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1144528538697103874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 284.10022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -309.59207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (17)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &5143231811515331420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 1144528538697103874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1313911752734223349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.082184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (13)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6537453655327859371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 1313911752734223349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1551096439252908926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 208.00699
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.57834
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6702721079439307296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 1551096439252908926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1604693604772070094
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 138.79349
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -345.55923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6829503113075723152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 1604693604772070094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1944850064821195939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 274.70697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.5455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &5944538637161618941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 1944850064821195939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2026511363697145621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 202.68893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6097273460457717323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2026511363697145621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2099772851682928955
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.082184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -404.0079
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (26)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6170394357839667301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2099772851682928955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2276209882787286204
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 274.70697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -403.78625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (20)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &6274913295175468514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2276209882787286204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2559799525584816880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 138.79349
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -471.91373
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (30)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &7711425532897264558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2559799525584816880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2567384291327779698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 217.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -471.91373
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (27)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &7720136062181894700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2567384291327779698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2976805936630482043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 138.79349
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -411.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (19)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &7047567766297513253 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 2976805936630482043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3647723505695573290
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 129.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.57834
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &8799208500373326964 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 3647723505695573290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3901280133498603618
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 269.38892
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -464.12164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (32)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &9126088544923894076 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 3901280133498603618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3971079697739895105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 284.10022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -411.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (22)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &9195887834538907679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 3971079697739895105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4012173421505569089
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.082184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.76715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &9163799162545776671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4012173421505569089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4309965761433264907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 217.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -309.59207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &8309796308547873365 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4309965761433264907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4376189401717929157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 129.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -463.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (29)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &8374753167219604891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4376189401717929157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4579865032297334396
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 274.70697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -301.57834
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (15)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &8578427421867020066 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4579865032297334396}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4812778116543300573
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 217.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -345.55923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &740891083509860995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4812778116543300573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4936074381407128466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 202.68893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -464.12164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (35)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &865313237861122764 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 4936074381407128466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5404725964868669806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 284.10022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -345.55923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &253099950309218352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 5404725964868669806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5456099844152872682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 208.00699
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -463.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (34)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &231290345294497716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 5456099844152872682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5487633346241538025
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 274.70697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -463.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (31)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &334882402706583223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 5487633346241538025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5600161074824757378
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 269.38892
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -404.0079
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (21)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &375351704279583196 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 5600161074824757378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6433915099059827684
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 269.38892
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.76715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &1282288946456427194 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 6433915099059827684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6859535230779687595
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 138.79349
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -309.59207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (14)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &1707909084871445493 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 6859535230779687595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7022483204010225692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 208.00699
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.5455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &3023780074620418370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 7022483204010225692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7531898699824636536
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 129.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -403.78625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (18)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &2307229799624239910 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 7531898699824636536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7555856772241672168
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 208.00699
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -403.78625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (25)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &2331047126500085430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 7555856772241672168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8365875914670044639
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 129.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.5455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 691.8768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &4367312277212052609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 8365875914670044639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8462153885470040160
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 217.40024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -411.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (23)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &4462465448371841342 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 8462153885470040160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8574371870089840275
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 202.68893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -337.76715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 616.9772
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &4502484138636660685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 8574371870089840275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9027052607327700778
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4054017358866886350}
+    m_Modifications:
+    - target: {fileID: 3919405587261214155, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: house teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 284.10022
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -471.91373
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 643.77673
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224809648712468831, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+      propertyPath: m_Name
+      value: Buildinghouse (33)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+--- !u!4 &3874441712189460084 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5224809648712468830, guid: 10354d9b8be3f9c4d995b850f8ea629b, type: 3}
+  m_PrefabInstance: {fileID: 9027052607327700778}
+  m_PrefabAsset: {fileID: 0}
