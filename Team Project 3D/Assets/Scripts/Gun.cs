@@ -66,4 +66,12 @@ public class Gun : MonoBehaviour
     [Header("위치/회전 오프셋")]
     public Vector3 positionOffset;
     public Vector3 rotationOffset;
+
+    [Tooltip("총구 화염 효과 (파티클 시스템)")]
+    public ParticleSystem muzzleFlashEffect;
+
+    [Header("오디오 클립")]
+    public AudioClip fireSound;     // 발사 소리
+    public AudioClip reloadSound;   // 재장전 소리
+    public AudioClip emptyClipSound; // 탄창이 비었을 때 나는 "클릭" 소리
 }

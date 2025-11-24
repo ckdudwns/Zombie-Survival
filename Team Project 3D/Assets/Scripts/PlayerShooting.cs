@@ -23,6 +23,11 @@ public class PlayerShooting : MonoBehaviour
     public Image crosshairImage;
     public GameObject scopeOverlay;
 
+    // --- [수정] 오디오 소스 변수 추가 ---
+    [Header("오디오 설정")]
+    public AudioSource audioSource; // 사운드를 재생할 AudioSource (Player에 붙어있는 것)
+    // --- [수정 완료] ---
+
     // --- Private 변수 ---
     private int currentAmmo; // 현재 탄창의 총알
     private bool isReloading = false;
@@ -76,6 +81,7 @@ public class PlayerShooting : MonoBehaviour
     // --- (Start 함수 수정 완료) ---
 
 
+    // --- [수정] Update 함수: 빈 탄창 "클릭" 소리 추가 ---
     void Update()
     {
         if (Player.isPaused) return;
@@ -103,7 +109,14 @@ public class PlayerShooting : MonoBehaviour
             }
             else // 탄창이 비었을 때 (currentAmmo <= 0)
             {
-                // 탄창이 비었으면 자동 재장전 시도
+                // (수정) 격발 실패 "클릭" 소리 재생 (사운드 스팸 방지)
+                nextTimeToFire = Time.time + 0.3f; // 클릭 소리 간격
+                if (audioSource != null && currentGun.emptyClipSound != null)
+                {
+                    audioSource.PlayOneShot(currentGun.emptyClipSound);
+                }
+
+                // (기존 로직) 자동 재장전 시도
                 string gunNameKey = currentGun.gunName;
                 if (reserveAmmoCounts.ContainsKey(gunNameKey) && reserveAmmoCounts[gunNameKey] > 0)
                 {
@@ -112,7 +125,7 @@ public class PlayerShooting : MonoBehaviour
                 else
                 {
                     // 예비 탄창도 없을 때 (연사 시 로그 스팸 방지를 위해 nextTimeToFire을 살짝 미룸)
-                    nextTimeToFire = Time.time + 0.2f; // 0.2초마다 한 번씩만 로그
+                    // nextTimeToFire = Time.time + 0.2f; // 0.2초마다 한 번씩만 로그 (위에서 0.3f로 설정됨)
                     Debug.Log(currentGun.gunName + "의 총알이 모두 소진되었습니다!");
                 }
             }
@@ -141,6 +154,7 @@ public class PlayerShooting : MonoBehaviour
             }
         }
     }
+    // --- [Update 함수 수정 완료] ---
 
     // 조준 입력 처리 함수 (토글 방식)
     void HandleAimingInput()
@@ -347,11 +361,18 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    // 재장전 로직
+    // --- [수정] Reload 코루틴: 재장전 사운드 추가 ---
     IEnumerator Reload()
     {
         isReloading = true;
         Debug.Log(currentGun.gunName + " 장전 중...");
+
+        // (수정) 재장전 사운드 재생
+        if (audioSource != null && currentGun.reloadSound != null)
+        {
+            audioSource.PlayOneShot(currentGun.reloadSound);
+        }
+        // (수정 완료)
 
         if (gunAnimator != null)
         {
@@ -361,7 +382,7 @@ public class PlayerShooting : MonoBehaviour
         yield return new WaitForSeconds(currentGun.reloadTime);
 
         string gunNameKey = currentGun.gunName;
-        int reserveAmmo = reserveAmmoCounts[gunNameKey];  // 현재 예비탄창
+        int reserveAmmo = reserveAmmoCounts[gunNameKey];    // 현재 예비탄창
         int maxMagazine = currentGun.maxAmmo;           // 최대 탄창 크기
         int neededAmmo = maxMagazine - currentAmmo;       // 필요한 총알 수
 
@@ -392,10 +413,18 @@ public class PlayerShooting : MonoBehaviour
         // (UI 업데이트)
         // UIManager.instance.UpdateAmmo(currentAmmo, reserveAmmoCounts[gunNameKey]);
     }
+    // --- [Reload 함수 수정 완료] ---
 
-    // 발사 로직
+    // --- [수정] Shoot 함수: 발사 사운드 추가 ---
     void Shoot()
     {
+        // (수정) 발사 사운드 재생
+        if (audioSource != null && currentGun.fireSound != null)
+        {
+            audioSource.PlayOneShot(currentGun.fireSound);
+        }
+        // (수정 완료)
+
         currentAmmo--; // 탄창에서 1발 감소
 
         // 발사 후 탄창 상태를 딕셔너리에 즉시 저장
@@ -408,6 +437,38 @@ public class PlayerShooting : MonoBehaviour
         {
             gunAnimator.SetTrigger(FireHash);
         }
+
+        // --- [수정된 사격 이펙트 로직] ---
+        if (currentGun.muzzleFlashEffect != null)
+        {
+            // 1. 'Stop Action'이 GameObject를 비활성화했을 경우 대비
+            if (currentGun.muzzleFlashEffect.gameObject.activeInHierarchy == false)
+            {
+                currentGun.muzzleFlashEffect.gameObject.SetActive(true);
+            }
+
+            // 2. 'Stop Action'이 ParticleSystem 컴포넌트 자체를 비활성화했을 경우 대비 (핵심)
+            /*
+            if (currentGun.muzzleFlashEffect.enabled == false)
+            {
+                currentGun.muzzleFlashEffect.enabled = true;
+            }
+            */
+            // [수정] 윗 부분(enabled)은 ParticleSystem에 존재하지 않는 속성이므로 삭제합니다.
+
+            // 3. 'Stop Action'이 Renderer만 비활성화했을 경우 대비 (이전 코드 유지)
+            var renderer = currentGun.muzzleFlashEffect.GetComponent<ParticleSystemRenderer>();
+            if (renderer != null && renderer.enabled == false)
+            {
+                renderer.enabled = true;
+            }
+
+            // 4. (기존 코드 유지) 파티클 상태가 꼬였을 경우를 대비해 강제 초기화 후 재생
+            //    애니메이션이 Emission을 0으로 만들었거나, Stop()만 호출된 상태일 수 있음
+            currentGun.muzzleFlashEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            currentGun.muzzleFlashEffect.Play();
+        }
+        // --- [이펙트 로직 수정 완료] ---
 
         if (playerController != null)
         {
@@ -426,6 +487,7 @@ public class PlayerShooting : MonoBehaviour
             FireSingleShot();
         }
     }
+    // --- [Shoot 함수 수정 완료] ---
 
     // 단발(Single) 또는 연사(Auto)용 발사 함수
     void FireSingleShot()
