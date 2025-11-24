@@ -67,6 +67,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8881076401840751194, guid: bfe752739efd1e74bb5d0e2aa40a98b7, type: 3}
   m_PrefabInstance: {fileID: 5850717359377389192}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &512520835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193004060720491310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0.11, y: 0, z: 0}
+--- !u!114 &4068809597451226063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193004060720491310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!136 &187668224
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -123,29 +149,24 @@ MonoBehaviour:
   attackCooldown: 2
   frenzyDetectionRange: 30
   frenzyMoveSpeed: 7
---- !u!65 &512520835
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6193004060720491310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
-  m_Center: {x: 0.11, y: 0, z: 0}
---- !u!114 &4068809597451226063
+--- !u!114 &5218076608187037779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6193004060720491310}
+  m_GameObject: {fileID: 6769057168536349657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ddb8213776ec2f4a807bb0cc81ddae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  maxHealth: 100
+  lootBoxPrefab: {fileID: 0}
+  enemyLootTable: {fileID: 0}
+  dropChance: 100
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  lootBoxDropHeightOffset: 0.5
+  isDeath: 0

@@ -103353,6 +103353,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   lootBoxDropHeightOffset: 0.3
+  isDeath: 0
 --- !u!4 &1932004159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1675858740678128198, guid: 6ed24e37d2b36dc45977bf6b83f69595, type: 3}
@@ -112665,7 +112666,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2eca2d371e128a5489f88f80f570c150, type: 3}
 --- !u!4 &2133444292 stripped
 Transform:

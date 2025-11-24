@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     private float originalMoveSpeed;
     private Coroutine frenzyCoroutine;
     private Animator animator;
+    private EnemyHealth enemyHealth;
 
     void Awake()
     {
@@ -60,6 +61,7 @@ public class Enemy : MonoBehaviour
         originalDetectionRange = detectionRange;
         originalMoveSpeed = moveSpeed;
         animator = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     void Update()
@@ -69,25 +71,32 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // 현재 detectionRange를 기준으로 플레이어 감지
-        if (distanceToPlayer <= detectionRange)
+        if (enemyHealth != null && !enemyHealth.isDeath)
         {
-            RotateTowardsPlayer();
-
-            if (distanceToPlayer > attackRange)
+            if (distanceToPlayer <= detectionRange)
             {
-                MoveTowardsPlayer();
+                RotateTowardsPlayer();
+
+                if (distanceToPlayer > attackRange)
+                {
+                    MoveTowardsPlayer();
+                }
+                else
+                {
+                    if (canAttack)
+                    {
+                        StartCoroutine(Attack());
+                    }
+                }
             }
             else
             {
-                if (canAttack)
-                {
-                    StartCoroutine(Attack());
-                }
+                animator.SetBool("isWalking", false);
             }
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            enabled = false;
         }
     }
 
@@ -97,7 +106,7 @@ public class Enemy : MonoBehaviour
         canAttack = false;
 
         if (animator != null) animator.SetTrigger("attack");
-        //yield return new WaitForSeconds(0.3f); // 선딜레이
+        yield return new WaitForSeconds(0.3f); // 선딜레이
 
         if (hitbox != null) hitbox.SetActive(true);
         yield return new WaitForSeconds(1.0f); // 히트박스 활성 시간
