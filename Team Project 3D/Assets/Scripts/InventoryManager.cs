@@ -98,7 +98,7 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// 인벤토리에서 특정 이름의 아이템을 찾아 제거합니다. (열쇠 사용 후 제거 등)
     /// </summary>
-    public void RemoveItemByName(string itemName)
+    public void RemoveItemByName(string itemName) 
     {
         ItemData itemToRemove = null;
         foreach (ItemData item in items)
