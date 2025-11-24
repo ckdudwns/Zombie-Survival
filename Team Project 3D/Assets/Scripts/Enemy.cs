@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
     private float originalDetectionRange;
     private float originalMoveSpeed;
     private Coroutine frenzyCoroutine;
+    private Animator animator;
 
     void Awake()
     {
@@ -58,6 +59,7 @@ public class Enemy : MonoBehaviour
         // 시작할 때 원래의 능력치를 저장해 둡니다.
         originalDetectionRange = detectionRange;
         originalMoveSpeed = moveSpeed;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -83,6 +85,10 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     IEnumerator Attack()
@@ -90,10 +96,11 @@ public class Enemy : MonoBehaviour
         Debug.Log(gameObject.name + " 공격!");
         canAttack = false;
 
-        yield return new WaitForSeconds(0.5f); // 선딜레이
+        if (animator != null) animator.SetTrigger("attack");
+        //yield return new WaitForSeconds(0.3f); // 선딜레이
 
         if (hitbox != null) hitbox.SetActive(true);
-        yield return new WaitForSeconds(0.2f); // 히트박스 활성 시간
+        yield return new WaitForSeconds(1.0f); // 히트박스 활성 시간
         if (hitbox != null) hitbox.SetActive(false);
 
         yield return new WaitForSeconds(attackCooldown);
@@ -142,6 +149,7 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        animator.SetBool("isWalking", true);
         // 현재 moveSpeed를 사용하므로, 광분 상태일 때는 자동으로 frenzyMoveSpeed가 적용됨
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }

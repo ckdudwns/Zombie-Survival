@@ -57,14 +57,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87fa71148c4167245a284d9a388e7ab6, type: 3}
---- !u!4 &1598061974416267587 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87fa71148c4167245a284d9a388e7ab6, type: 3}
-  m_PrefabInstance: {fileID: 1272211487046860456}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2118561314616132601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 87fa71148c4167245a284d9a388e7ab6, type: 3}
+  m_PrefabInstance: {fileID: 1272211487046860456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7585482755490814880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: 87fa71148c4167245a284d9a388e7ab6, type: 3}
   m_PrefabInstance: {fileID: 1272211487046860456}
   m_PrefabAsset: {fileID: 0}
 --- !u!136 &2115935928001892204
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3761f73edffe3429b740b1352b8f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1598061974416267587}
+  player: {fileID: 8013130110787189131, guid: 955bf4c1a444ccb44a6bec3ca2c33431, type: 3}
   hitbox: {fileID: 7585482755490814880}
   detectionRange: 15
   attackRange: 1.5
@@ -123,11 +123,6 @@ MonoBehaviour:
   attackCooldown: 2
   frenzyDetectionRange: 30
   frenzyMoveSpeed: 7
---- !u!1 &7585482755490814880 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: 87fa71148c4167245a284d9a388e7ab6, type: 3}
-  m_PrefabInstance: {fileID: 1272211487046860456}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &5324191785512662021
 BoxCollider:
   m_ObjectHideFlags: 0
