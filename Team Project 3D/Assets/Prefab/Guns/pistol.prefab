@@ -756,6 +756,9 @@ MonoBehaviour:
   positionOffset: {x: -0.8, y: -0.024, z: -0.2}
   rotationOffset: {x: 0, y: 0, z: 0}
   muzzleFlashEffect: {fileID: 8419611660857984326}
+  fireSound: {fileID: 8300000, guid: 12c9e1a5667403346a42a2edc996646f, type: 3}
+  reloadSound: {fileID: 8300000, guid: ff68440084db7eb42a496be203a08bac, type: 3}
+  emptyClipSound: {fileID: 0}
 --- !u!95 &3545677872627604567
 Animator:
   serializedVersion: 5
