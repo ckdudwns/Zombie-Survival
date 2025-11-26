@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3761f73edffe3429b740b1352b8f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8013130110787189131, guid: 955bf4c1a444ccb44a6bec3ca2c33431, type: 3}
+  player: {fileID: 0}
   hitbox: {fileID: 6193004060720491310}
   detectionRange: 15
   attackRange: 1.5

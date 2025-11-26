@@ -87,6 +87,10 @@ public class Enemy : MonoBehaviour
                     {
                         StartCoroutine(Attack());
                     }
+                    else
+                    {
+                        animator.SetBool("isWalking", false);
+                    }
                 }
             }
             else
