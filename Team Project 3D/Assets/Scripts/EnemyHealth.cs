@@ -28,11 +28,15 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("상자가 바닥에서 얼마나 위쪽에 생성될지 정합니다.")]
     public float lootBoxDropHeightOffset = 0.5f;
 
+    private Animator animator;
     private int currentHealth;
+    public bool isDeath;
 
     void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+        isDeath = false;
     }
 
     void Update()
@@ -62,10 +66,13 @@ public class EnemyHealth : MonoBehaviour
         if (!enabled) return;
 
         Debug.Log(gameObject.name + "가 쓰러졌습니다.");
+        animator.SetTrigger("death");
+        isDeath = true;
         HandleDrops(); // 드롭 로직 호출
 
         enabled = false; // 스크립트 비활성화
-        Destroy(gameObject); // 오브젝트 파괴
+
+        Destroy(gameObject, 2.0f); // 오브젝트 파괴
     }
 
     /// <summary>
