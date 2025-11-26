@@ -58,7 +58,8 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 {
                     // PlayerShooting에 이 함수를 추가해야 합니다. (아래 3번 항목 참고)
                     playerShooting.EquipNewGun(gunPrefab);
-                    Debug.Log(gunPrefab.gunName + "을(를) 장착했습니다.");
+                    // GameObject에서 Gun 컴포넌트를 가져온 뒤 이름을 확인해야 합니다.
+                    Debug.Log(gunPrefab.GetComponent<Gun>().gunName + "을(를) 장착했습니다.");
                 }
                 break;
 
