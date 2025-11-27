@@ -62,11 +62,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e36c08199eb17e640bfe2a22767ce5f9, type: 3}
   m_PrefabInstance: {fileID: 2996962451838504247}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5869765380666058815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: e36c08199eb17e640bfe2a22767ce5f9, type: 3}
-  m_PrefabInstance: {fileID: 2996962451838504247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!136 &8880820384588035537
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -91,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 2690391331134091366}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 20fb27f5f89957d42a9884f4d16011ff, type: 2}
+  m_Controller: {fileID: 9100000, guid: 871dbb60e6fbd1d4ca112997ba49e0e2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -102,48 +97,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4660058701365773620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &5869765380666058815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: e36c08199eb17e640bfe2a22767ce5f9, type: 3}
+  m_PrefabInstance: {fileID: 2996962451838504247}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2690391331134091366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3761f73edffe3429b740b1352b8f03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  hitbox: {fileID: 5869765380666058815}
-  detectionRange: 15
-  attackRange: 1.5
-  moveSpeed: 3
-  rotationSpeed: 10
-  attackCooldown: 2
-  frenzyDetectionRange: 30
-  frenzyMoveSpeed: 7
---- !u!114 &4904429493779161490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2690391331134091366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ddb8213776ec2f4a807bb0cc81ddae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  lootBoxPrefab: {fileID: 0}
-  enemyLootTable: {fileID: 0}
-  dropChance: 100
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  lootBoxDropHeightOffset: 0.5
-  isDeath: 0
 --- !u!65 &6080856840527633248
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -152,21 +110,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5869765380666058815}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.16, z: 0.3}
   m_Center: {x: 0.03, y: 0.02, z: -0.37}
---- !u!114 &645931767845229141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5869765380666058815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
