@@ -161,18 +161,7 @@ public class Player : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
 
 
-        // --- (수정됨) 애니메이터 파라미터 업데이트 (isSprinting 전용) ---
-        if (animator != null)
-        {
-            // 1. 'isSprinting' 파라미터 전달 (달리기 상태)
-            //    이 값 하나로만 'Run' 또는 'Idle' 상태를 오고 갑니다.
-            animator.SetBool("isSprinting", IsSprinting);
 
-            // 2. (삭제됨) 'isMoving' 파라미터는 더 이상 사용하지 않습니다.
-            // bool isMoving = move.magnitude > 0.1f;
-            // animator.SetBool("isMoving", isMoving);
-        }
-        // --- 여기까지 ---
     }
 
     // ... (HandleLook, TogglePause, ToggleInventory, HandleInteraction 함수는 변경 없음) ...

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34998cb74d2ac694dbd2ae5ad4327737, type: 3}
   m_Name: New HealthPack
   m_EditorClassIdentifier: 
-  itemName: Health
+  itemName: chocolate bar
   icon: {fileID: 0}
   description: Item Description
   healAmount: 30

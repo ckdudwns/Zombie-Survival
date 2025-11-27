@@ -8,6 +8,17 @@ TagManager:
   - Health
   - Item
   - Coin
+  - door
+  - button f4
+  - button f5
+  - button f3
+  - button f2
+  - button f1
+  - button f6
+  - ItemSpawnPoint
+  - HPSpawnpoint
+  - GunSpawnpoint
+  - ImportantItemSpawnpoint
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2094790672438766438}
   m_Layer: 0
   m_Name: hpspawner
-  m_TagString: Untagged
+  m_TagString: HPSpawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4305223763225125795
 Transform:
   m_ObjectHideFlags: 0
