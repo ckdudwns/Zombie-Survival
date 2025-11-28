@@ -6,11 +6,8 @@ public class FlareGunFinal : Gun
     [Header("플레어 투사체 설정 (Flare 전용)")]
     [SerializeField] private GameObject flarePrefab;
     [SerializeField] private float flareSpeed = 30f;
-    [SerializeField] private float flareLifetime = 5f;
+    [SerializeField] private float flareLifetime = 10f; // 체공 시간 조금 늘림
     [SerializeField] private float fireAngle = 75f;
-
-    [Header("입력 설정")]
-    [SerializeField] private KeyCode fireKey = KeyCode.Mouse0;
 
     [Header("발사 가능 구역 (Zone)")]
     [SerializeField] private Transform flareZone;
@@ -27,24 +24,25 @@ public class FlareGunFinal : Gun
 
     // 내부 상태 변수
     private AudioSource audioSource;
-    private int currentAmmo;
-    private bool isReloading = false;
     private bool isInZone = false;
     private Transform currentZone;
+    private bool hasFired = false; // 일회용 체크
 
     void Start()
     {
+        // Gun 클래스의 기본 정보 설정
         gunName = "Flare Gun";
-        currentAmmo = startMagazineAmmo;
 
         audioSource = GetComponent<AudioSource>();
 
+        // 플레이어 자동 찾기
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null) player = playerObj.transform;
         }
 
+        // 헬기 시스템 자동 찾기
         if (helicopterSystem == null)
         {
             helicopterSystem = FindObjectOfType<FlareHelicopterRescueV2>();
@@ -53,56 +51,51 @@ public class FlareGunFinal : Gun
 
     void Update()
     {
-        // 1. 매 프레임 플레이어가 구역 안에 있는지 체크
+        // 매 프레임 플레이어가 구역 안에 있는지 체크 (UI 표시용)
         CheckIfInZone();
 
-        // 2. 발사 입력 감지
-        if (Input.GetKeyDown(fireKey))
-        {
-            TryFire();
-        }
+        // *주의: 여기서 Input.GetKeyDown(fireKey)를 쓰지 않습니다.
+        // 입력은 PlayerShooting 스크립트가 받아서 아래 TryCustomFire()를 호출합니다.
     }
 
-    // [중요 수정] 발사 시도 로직 재정리
-    void TryFire()
+    // [핵심 연결고리] PlayerShooting이 호출하는 함수
+    public override bool TryCustomFire()
     {
-        // 1. [최우선] 구역 밖이라면 절대 발사 불가 (탄약이 있어도 안됨)
-        if (!isInZone)
-        {
-            CannotFire(); // 실패 사운드 및 로그
-            return;       // 여기서 함수 강제 종료! (아래 코드 실행 안 됨)
-        }
+        // 이 함수가 호출되었다는 건, PlayerShooting에서 발사 버튼을 눌렀다는 뜻입니다.
+        Fire(); // 실제 발사 로직 실행
 
-        // 2. 재장전 중인가?
-        if (isReloading)
-        {
-            return;
-        }
+        return true; // "내가 처리했으니 PlayerShooting 너는 기본 발사(레이캐스트) 하지 마" 라는 뜻
+    }
 
-        // 3. 탄약이 없는가?
-        if (currentAmmo <= 0)
+    // 실제 발사 로직 (Gun의 Fire를 덮어쓰기)
+    public override void Fire()
+    {
+        // 1. [일회용 체크] 이미 쐈다면 빈 소리만 재생
+        if (hasFired)
         {
-            // 부모(Gun)의 빈 탄창 소리 재생
+            Debug.Log("⛔ 이미 사용한 신호탄입니다.");
             PlaySound(emptyClipSound);
             return;
         }
 
-        // 위 3가지 관문을 모두 통과해야만 실제 발사
-        Fire();
-    }
+        // 2. [구역 체크] 구역 밖이라면 경고음 재생 후 취소
+        if (!isInZone)
+        {
+            CannotFire();
+            return;
+        }
 
-    // 실제 발사 로직
-    void Fire()
-    {
-        isReloading = true;
-        currentAmmo--;
+        // --- 검사 통과: 발사 시작 ---
 
-        Debug.Log("🔥 플레어 발사!");
+        hasFired = true; // 사용 처리 (이제 두 번 다시 못 쏨)
+        Debug.Log("🔥 구조 신호탄 발사 성공!");
 
-        // 1. 플레어 생성
+        // 3. 플레어 투사체 생성
         if (flarePrefab != null)
         {
+            // 총구 위치가 없으면 내 위치 앞
             Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position + transform.forward;
+            // 위쪽(fireAngle)을 향해 쏘도록 각도 계산
             Vector3 shootDirection = Quaternion.Euler(-fireAngle, 0, 0) * transform.forward;
 
             GameObject flare = Instantiate(flarePrefab, spawnPos, Quaternion.identity);
@@ -114,6 +107,7 @@ public class FlareGunFinal : Gun
             }
             else
             {
+                // Rigidbody가 없으면 직접 만든 스크립트 붙이기
                 FlareProjectile flareScript = flare.AddComponent<FlareProjectile>();
                 flareScript.Initialize(shootDirection * flareSpeed, flareLifetime);
             }
@@ -121,39 +115,30 @@ public class FlareGunFinal : Gun
             Destroy(flare, flareLifetime);
         }
 
-        // 2. 사운드 및 이펙트
+        // 4. 사운드 및 이펙트
         if (fireSound != null) PlaySound(fireSound);
-        if (muzzleFlashEffect != null) muzzleFlashEffect.Play();
+        if (muzzleFlashEffect != null)
+        {
+            muzzleFlashEffect.gameObject.SetActive(true);
+            muzzleFlashEffect.Play();
+        }
 
-        // 3. 헬리콥터 호출 (구역 안에서 쐈으므로 호출됨)
+        // 5. 헬리콥터 호출
         if (helicopterSystem != null && currentZone != null)
         {
             helicopterSystem.CallHelicopter(currentZone.position);
         }
-
-        // 4. 재장전 대기
-        Invoke(nameof(FinishReload), reloadTime);
     }
 
-    // 발사 실패 처리 (구역 밖일 때)
+    // 발사 실패 처리
     void CannotFire()
     {
-        float distance = GetDistanceToNearestZone();
-        // 화면 중앙이나 콘솔에 메시지 출력
-        Debug.LogWarning($"❌ 여기서는 신호를 보낼 수 없습니다! (가장 가까운 구조 지점까지 {distance:F1}m)");
-
-        // "삑-" 하는 경고음 재생
+        float dist = GetDistanceToNearestZone();
+        Debug.LogWarning($"❌ 통신 불가 지역! (가장 가까운 구조 지점까지 {dist:F1}m)");
         PlaySound(cannotFireSound);
     }
 
-    void FinishReload()
-    {
-        isReloading = false;
-        if (currentAmmo > 0 && reloadSound != null)
-            PlaySound(reloadSound);
-    }
-
-    // 구역 진입 체크
+    // 구역 진입 체크 로직
     void CheckIfInZone()
     {
         if (player == null) return;
@@ -186,24 +171,25 @@ public class FlareGunFinal : Gun
     float GetDistanceToNearestZone()
     {
         if (player == null) return 0f;
-        float minDistance = float.MaxValue;
 
         if (useMultipleZones && flareZones != null)
         {
-            foreach (Transform zone in flareZones)
+            float min = float.MaxValue;
+            foreach (var z in flareZones)
             {
-                if (zone != null)
+                if (z != null)
                 {
-                    float dist = Vector3.Distance(player.position, zone.position);
-                    if (dist < minDistance) minDistance = dist;
+                    float d = Vector3.Distance(player.position, z.position);
+                    if (d < min) min = d;
                 }
             }
+            return min;
         }
         else if (flareZone != null)
         {
-            minDistance = Vector3.Distance(player.position, flareZone.position);
+            return Vector3.Distance(player.position, flareZone.position);
         }
-        return minDistance;
+        return 0f;
     }
 
     void PlaySound(AudioClip clip)
@@ -216,7 +202,7 @@ public class FlareGunFinal : Gun
 
     void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
+        Gizmos.color = isInZone ? Color.green : new Color(1f, 0.5f, 0f, 0.3f);
 
         if (useMultipleZones && flareZones != null)
         {
@@ -233,12 +219,11 @@ public class FlareGunFinal : Gun
 
     void DrawZoneGizmo(Transform zone)
     {
-        Gizmos.DrawSphere(zone.position, zoneRadius);
-        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(zone.position, zoneRadius);
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
     }
 }
+
+// ▼▼▼ FlareProjectile 클래스 (CS0246 에러 방지용) ▼▼▼
 public class FlareProjectile : MonoBehaviour
 {
     private Vector3 velocity;
@@ -254,7 +239,6 @@ public class FlareProjectile : MonoBehaviour
 
     void Update()
     {
-        // 중력 적용
         velocity += Physics.gravity * Time.deltaTime;
         transform.position += velocity * Time.deltaTime;
 

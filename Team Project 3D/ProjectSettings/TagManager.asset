@@ -19,6 +19,9 @@ TagManager:
   - HPSpawnpoint
   - GunSpawnpoint
   - ImportantItemSpawnpoint
+  - Interactable
+  - Concrete
+  - Destructible
   layers:
   - Default
   - TransparentFX
