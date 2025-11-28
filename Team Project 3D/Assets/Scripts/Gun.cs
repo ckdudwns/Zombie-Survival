@@ -74,4 +74,14 @@ public class Gun : MonoBehaviour
     public AudioClip fireSound;     // 발사 소리
     public AudioClip reloadSound;   // 재장전 소리
     public AudioClip emptyClipSound; // 탄창이 비었을 때 나는 "클릭" 소리
+
+    public virtual void Fire()
+    {
+        // 기본 총은 PlayerShooting에서 쏘므로 여기는 비워둡니다.
+    }
+
+    public virtual bool TryCustomFire()
+    {
+        return false;
+    }
 }

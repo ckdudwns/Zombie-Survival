@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 0
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: e70df7219a942cb41835ee397cbf3b54, type: 2}
   gunPrefab: {fileID: 0}
   ammoAmount: 0
   uiPanelToShow: {fileID: 0}

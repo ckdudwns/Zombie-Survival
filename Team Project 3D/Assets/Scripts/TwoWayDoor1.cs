@@ -3,16 +3,36 @@ using UnityEngine;
 public class TwoWayDoor1 : MonoBehaviour
 {
     public Transform destination;
-    public TwoWayDoor1 linkedDoor; // 연결된 반대편 문
+    public TwoWayDoor1 linkedDoor;
+
+    [Header("잠금 설정")]
+    public bool isLocked = true; // 기본적으로 잠겨있음
     private bool canTeleport = true;
+
+    // 외부(패널)에서 호출하여 문을 잠금 해제하는 함수
+    public void UnlockDoor()
+    {
+        isLocked = false;
+        Debug.Log("문 잠금이 해제되었습니다! 이제 이동할 수 있습니다.");
+    }
 
     void OnTriggerEnter(Collider other)
     {
+        // 문이 잠겨있으면 이동 불가
+        if (isLocked)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("문이 잠겨있습니다. 카드키가 필요합니다.");
+            }
+            return;
+        }
+
         if (other.CompareTag("Player") && canTeleport)
         {
             if (destination == null)
             {
-                Debug.LogError("문이 잠겨있다!");
+                Debug.LogError("도착 지점이 설정되지 않았습니다!");
                 return;
             }
 
@@ -30,7 +50,6 @@ public class TwoWayDoor1 : MonoBehaviour
 
             Debug.Log("텔레포트 완료!");
 
-            // 양쪽 문 모두 쿨다운 시작
             StartCoroutine(TeleportCooldown());
             if (linkedDoor != null)
             {
@@ -42,8 +61,7 @@ public class TwoWayDoor1 : MonoBehaviour
     public System.Collections.IEnumerator TeleportCooldown()
     {
         canTeleport = false;
-        yield return new WaitForSeconds(1f); // 1초로 늘림
+        yield return new WaitForSeconds(1f);
         canTeleport = true;
-        Debug.Log("쿨다운 끝!");
     }
 }
