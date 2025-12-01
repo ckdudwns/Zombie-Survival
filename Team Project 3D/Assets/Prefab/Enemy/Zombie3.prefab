@@ -57,16 +57,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
---- !u!1 &8752543207271538488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
-  m_PrefabInstance: {fileID: 8482018064393609833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &960655981167527777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -512634123677276920, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
   m_PrefabInstance: {fileID: 8482018064393609833}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &3828996991889056114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960655981167527777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14, y: 0.2, z: 0.33}
+  m_Center: {x: 0.12, y: 0, z: -0.4}
+--- !u!114 &1892186606461184228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960655981167527777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!1 &8752543207271538488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cfd9df7cd30abf14ea56a7c8d7f12e18, type: 3}
+  m_PrefabInstance: {fileID: 8482018064393609833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8050562045756320318
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752543207271538488}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &7514506138573507717
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -123,6 +165,11 @@ MonoBehaviour:
   attackCooldown: 2
   frenzyDetectionRange: 30
   frenzyMoveSpeed: 7
+  frenzyDuration: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  groundCheckDistance: 0.5
 --- !u!114 &7351084449977469818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,32 +188,6 @@ MonoBehaviour:
   dropChance: 100
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   lootBoxDropHeightOffset: 0.5
   isDeath: 0
---- !u!65 &3828996991889056114
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960655981167527777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.2, z: 0.33}
-  m_Center: {x: 0.12, y: 0, z: -0.4}
---- !u!114 &1892186606461184228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960655981167527777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10

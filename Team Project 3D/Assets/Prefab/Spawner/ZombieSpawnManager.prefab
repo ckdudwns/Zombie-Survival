@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &864761303449044408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864761303449044410}
+  - component: {fileID: 864761303449044411}
+  m_Layer: 0
+  m_Name: ZombieSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &864761303449044410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864761303449044408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 69, y: 35.3, z: -77.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864761303449044411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864761303449044408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218a5b0a5008f194db775685882c14a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombiePrefabs:
+  - {fileID: 6769057168536349657, guid: 2eca2d371e128a5489f88f80f570c150, type: 3}
+  - {fileID: 2690391331134091366, guid: 9b90f49bc71c1454cbb0c62918c057a3, type: 3}
+  - {fileID: 8752543207271538488, guid: d4aad37b31274674eb1c008bd712c81a, type: 3}
+  - {fileID: 8150188757826490894, guid: a5f3a1d3cbc796a4d95adf8003f2ccdf, type: 3}
+  - {fileID: 5004793910572710197, guid: 4a0c5cc656061854195028dfa63cb311, type: 3}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  maxZombiesNearPlayer: 10
+  spawnInterval: 3
+  mapSize: {x: 200, y: 200}
+  minSpawnDist: 15
+  maxSpawnDist: 40
+  currentZombieCount: 0
