@@ -43,4 +43,10 @@ public class ItemRequiredInteractable : MonoBehaviour, IInteractable
             Debug.Log(failMessage);
         }
     }
+
+    // (+)
+    public void SetQuestCompletion(System.Action questCompleteAction)
+    {
+        onInteractSuccess.AddListener(() => questCompleteAction.Invoke());
+    }
 }
