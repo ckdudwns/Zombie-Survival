@@ -42,7 +42,8 @@ public class Trap : MonoBehaviour, IInteractable
             if (enemy != null)
             {
                 // 적의 강화 함수를 호출
-                enemy.ActivateFrenzyMode(effectDuration);
+                //enemy.ActivateFrenzyMode(effectDuration);
+                enemy.ActivateFrenzyMode();
             }
         }
 

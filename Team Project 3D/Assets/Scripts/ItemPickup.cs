@@ -49,6 +49,12 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 {
                     invManager.AddItem(itemData);
                     Debug.Log(itemData.itemName + "¿ª(∏¶) »πµÊ«ﬂΩ¿¥œ¥Ÿ.");
+
+                    USBPickedTrigger trigger = GetComponent<USBPickedTrigger>();
+                    if (trigger != null)
+                    {
+                        trigger.ActivateUSBTrigger();
+                    }
                 }
                 break;
 
