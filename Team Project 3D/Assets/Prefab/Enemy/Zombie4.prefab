@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  lootBoxPrefab: {fileID: 0}
-  enemyLootTable: {fileID: 0}
+  lootBoxPrefab: {fileID: 1614320070736016290, guid: 61e5ced7043cead4c80fcc5443ef9744, type: 3}
+  enemyLootTable: {fileID: 11400000, guid: bab9de443f38f9b4c86b5302b8381bd5, type: 2}
   dropChance: 100
   groundLayer:
     serializedVersion: 2
