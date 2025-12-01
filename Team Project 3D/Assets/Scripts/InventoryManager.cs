@@ -5,6 +5,12 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
 
+    // (+)
+    [Header("슬롯 설정")]
+    public GameObject slotPrefab;       // ItemSlot prefab
+    public Transform slotsParent;       // GridLayoutGroup이 붙은 Panel
+    private List<ItemSlot> slots = new List<ItemSlot>();
+
     [Header("인벤토리 설정")]
     [Tooltip("인벤토리 UI 패널 (Canvas의 Panel 오브젝트)")]
     public GameObject inventoryUIPanel;
@@ -31,6 +37,9 @@ public class InventoryManager : MonoBehaviour
         if (inventoryUIPanel != null)
         {
             inventoryUIPanel.SetActive(false);
+            //(+)
+            InitializeSlots(20);
+            UpdateInventoryUI();
         }
     }
 
@@ -128,5 +137,49 @@ public class InventoryManager : MonoBehaviour
         bool isActive = !inventoryUIPanel.activeSelf;
         inventoryUIPanel.SetActive(isActive);
         return isActive; // 현재 UI 상태 반환
+    }
+
+    // (+)
+    void InitializeSlots(int slotCount = 20)
+    {
+        if (slotPrefab == null || slotsParent == null) return;
+
+        foreach (Transform child in slotsParent)
+            Destroy(child.gameObject);
+
+        slots.Clear();
+
+        for (int i = 0; i < slotCount; i++)
+        {
+            GameObject slotGO = Instantiate(slotPrefab, slotsParent);
+            ItemSlot slot = slotGO.GetComponent<ItemSlot>();
+            if (slot != null)
+            {
+                slot.ClearSlot();
+                slots.Add(slot);
+
+                int index = i; // 클릭 이벤트용 인덱스 캡처
+                slotGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+                {
+                    UseItem(index);
+                });
+            }
+        }
+    }
+    // (+)
+    public void UpdateInventoryUI()
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (i < items.Count)
+                slots[i].SetItem(items[i], i);
+            else
+                slots[i].ClearSlot();
+        }
+    }
+    // (+)
+    public Player GetPlayer()
+    {
+        return playerReference;
     }
 }

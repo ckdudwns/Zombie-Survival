@@ -9,6 +9,7 @@ public class NPCInteraction : MonoBehaviour
     private bool isPlayerNear = false;
     private bool isInteracting = false;
     private bool isSlowed = false;
+    public string questID; // (+) 대화 후 시작할 퀘스트 ID
 
     private Player playerScript;
 
@@ -75,5 +76,14 @@ public class NPCInteraction : MonoBehaviour
             isPlayerNear = false;
             playerScript = null;
         }
+    }
+
+    // (+) 기존에 사용했던 퀘스트 시작. 필요시 나중에 사용
+    public void Interact(GameObject player)
+    {
+        Debug.Log("NPC와 상호작용함");
+
+        // 퀘스트 시작만 호출, 대사는 QuestManager에서 처리
+        QuestManager.instance.StartQuest(questID);
     }
 }

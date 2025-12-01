@@ -26,6 +26,11 @@ public class PlayerShooting : MonoBehaviour
     [Header("오디오 설정")]
     public AudioSource audioSource;
 
+    // (+)
+    [Header("UI")]
+    public AmmoUI ammoUI; // Inspector에서 연결
+
+
     // --- Private 변수 ---
     private int currentAmmo; // 현재 탄창의 총알
     private bool isReloading = false;
@@ -73,6 +78,10 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
+        // (+) 대화 중이면 모든 입력 금지
+        if (DialogueUI.instance != null && DialogueUI.instance.isDialogueOpen)
+            return;
+
         if (Player.isPaused) return;
 
         HandleWeaponSwitching();
@@ -303,6 +312,9 @@ public class PlayerShooting : MonoBehaviour
                 crosshairImage.enabled = false;
             }
         }
+        // (+)
+        currentAmmo = currentMagazineAmmo[gunNameKey];
+        UpdateAmmoUI();
     }
 
     IEnumerator Reload()
@@ -341,6 +353,9 @@ public class PlayerShooting : MonoBehaviour
 
         currentMagazineAmmo[gunNameKey] = currentAmmo;
         isReloading = false;
+
+        // (+)
+        UpdateAmmoUI();
     }
 
     // 일반 총기(라이플, 샷건) 발사 로직
@@ -389,6 +404,11 @@ public class PlayerShooting : MonoBehaviour
         {
             FireSingleShot();
         }
+
+        // (+)
+        currentMagazineAmmo[currentGun.gunName] = currentAmmo;
+        UpdateAmmoUI();
+
     }
 
     void FireSingleShot()
@@ -469,4 +489,14 @@ public class PlayerShooting : MonoBehaviour
             Instantiate(currentGun.bulletPrefab, currentGun.firePoint.position, bulletRotation);
         }
     }
+
+    // (+)
+    void UpdateAmmoUI()
+    {
+        if (ammoUI != null && currentGun != null)
+        {
+            ammoUI.SetAmmo(currentGun.gunName, currentAmmo, currentGun.maxAmmo, reserveAmmoCounts[currentGun.gunName]);
+        }
+    }
+
 }
