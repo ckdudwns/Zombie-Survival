@@ -31,12 +31,16 @@ public class EnemyHealth : MonoBehaviour
     private Animator animator;
     private int currentHealth;
     public bool isDeath;
+    private ZombieSpawner spawner;
 
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         isDeath = false;
+        spawner = FindObjectOfType<ZombieSpawner>();
+        if (spawner == null)
+            Debug.Log("spawner null");
     }
 
     void Update()
@@ -64,7 +68,10 @@ public class EnemyHealth : MonoBehaviour
     {
         // 중복 사망 방지
         if (!enabled) return;
-
+        if (spawner != null)
+        {
+            spawner.ZombieDied();
+        }
         Debug.Log(gameObject.name + "가 쓰러졌습니다.");
         animator.SetTrigger("death");
         isDeath = true;

@@ -57,16 +57,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da3eaf1390679d5418048999ff048e38, type: 3}
---- !u!1 &8150188757826490894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da3eaf1390679d5418048999ff048e38, type: 3}
-  m_PrefabInstance: {fileID: 9068596737914728287}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3078140105497287934 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2923433530071387231, guid: da3eaf1390679d5418048999ff048e38, type: 3}
   m_PrefabInstance: {fileID: 9068596737914728287}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &2345376034886914745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078140105497287934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: -0.1, y: 0, z: 0}
+--- !u!114 &3828728058996994646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078140105497287934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!1 &8150188757826490894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da3eaf1390679d5418048999ff048e38, type: 3}
+  m_PrefabInstance: {fileID: 9068596737914728287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8220963394708753509
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8150188757826490894}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &4268898567601610623
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -123,6 +165,11 @@ MonoBehaviour:
   attackCooldown: 2
   frenzyDetectionRange: 30
   frenzyMoveSpeed: 7
+  frenzyDuration: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  groundCheckDistance: 0.5
 --- !u!114 &5485998759444766132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,29 +191,3 @@ MonoBehaviour:
     m_Bits: 0
   lootBoxDropHeightOffset: 0.5
   isDeath: 0
---- !u!65 &2345376034886914745
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3078140105497287934}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
-  m_Center: {x: -0.1, y: 0, z: 0}
---- !u!114 &3828728058996994646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3078140105497287934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91122c4153567cd4d8bd459d66119afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
