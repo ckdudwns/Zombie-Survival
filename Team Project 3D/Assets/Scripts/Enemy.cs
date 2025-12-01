@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
     [Tooltip("함정 발동 시 증가할 이동 속도")]
     public float frenzyMoveSpeed = 7f;
 
+    public float frenzyDuration = 30f;
+
     // --- Private 변수 ---
     private float originalDetectionRange;
     private float originalMoveSpeed;
@@ -54,7 +56,14 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
+    private void OnEnable()
+    {
+        GameEvent.OnUSBPicked += ActivateFrenzyMode;
+    }
+    private void OnDisable()
+    {
+        GameEvent.OnUSBPicked -= ActivateFrenzyMode;
+    }
     void Start()
     {
         // 시작할 때 원래의 능력치를 저장해 둡니다.
@@ -121,18 +130,18 @@ public class Enemy : MonoBehaviour
     }
 
     // --- TrapItem에서 호출할 공개 함수 ---
-    public void ActivateFrenzyMode(float duration)
+    public void ActivateFrenzyMode()
     {
         // 이미 다른 Frenzy 효과가 진행 중이라면 중지하고 새로 시작 (효과 시간 갱신)
         if (frenzyCoroutine != null)
         {
             StopCoroutine(frenzyCoroutine);
         }
-        frenzyCoroutine = StartCoroutine(FrenzyCoroutine(duration));
+        frenzyCoroutine = StartCoroutine(FrenzyCoroutine());
     }
 
     // --- 효과를 잠시 적용했다가 되돌리는 코루틴 ---
-    private IEnumerator FrenzyCoroutine(float duration)
+    private IEnumerator FrenzyCoroutine()
     {
         Debug.Log(gameObject.name + "가 광분 상태에 돌입!");
 
@@ -141,7 +150,7 @@ public class Enemy : MonoBehaviour
         moveSpeed = frenzyMoveSpeed;
 
         // 효과 지속 시간만큼 대기
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(frenzyDuration);
 
         Debug.Log(gameObject.name + "의 광분 상태가 해제됩니다.");
 
