@@ -80,6 +80,14 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
+        // (+) 게임 멈춤 체크 (대화, 인벤토리, 일시정지 등)
+        if ((DialogueUI.instance != null && DialogueUI.instance.isDialogueOpen) ||
+            (InventoryManager.instance != null && InventoryManager.instance.inventoryUIPanel.activeSelf) ||
+            Player.isPaused) // 이미 구현한 일시정지 플래그
+        {
+            return; // 이 프레임 동안 아무 동작 안함
+        }
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         ApplyGroundSnapping();
         // 현재 detectionRange를 기준으로 플레이어 감지

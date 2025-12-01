@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private float verticalLookRotation = 0f;
+    public static bool isGameStarted = false; // (+)
 
     // --- 애니메이터 참조 ---
     private Animator animator;
@@ -83,9 +84,10 @@ public class Player : MonoBehaviour
             Debug.LogWarning("Player의 자식 오브젝트에서 Animator를 찾지 못했습니다.");
         }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        controller.height = standingHeight;
+        // (-) 아래 부분은 UI에서 관리
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //controller.height = standingHeight;
 
         // 시작할 때 손에 든 폰은 꺼두기
         if (handHeldPhone != null)
@@ -94,6 +96,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // (+)
+        if (!isGameStarted)
+            return;
+
         // 1. ESC 키 입력 (일시정지 또는 폰 끄기)
         if (Input.GetKeyDown(KeyCode.Escape))
         {
