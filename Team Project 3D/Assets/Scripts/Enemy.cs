@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour
 
     public float frenzyDuration = 30f;
 
+    public LayerMask groundLayer;
+    public float groundCheckDistance = 0.5f;
+
     // --- Private 변수 ---
     private float originalDetectionRange;
     private float originalMoveSpeed;
@@ -78,7 +81,7 @@ public class Enemy : MonoBehaviour
         if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
+        ApplyGroundSnapping();
         // 현재 detectionRange를 기준으로 플레이어 감지
         if (enemyHealth != null && !enemyHealth.isDeath)
         {
@@ -184,5 +187,17 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    void ApplyGroundSnapping()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f,Vector3.down,out hit, groundCheckDistance, groundLayer))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
+        else
+        {
+            transform.position += Vector3.down * 5f * Time.deltaTime;
+        }
     }
 }
