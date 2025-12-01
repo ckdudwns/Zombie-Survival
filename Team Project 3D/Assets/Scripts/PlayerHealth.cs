@@ -8,10 +8,16 @@ public class PlayerHealth : MonoBehaviour
 
     private int currentHealth;
     private bool isDead = false; // 플레이어가 죽었는지 확인하는 변수
+    public HealthUI healthUI;   // (+) UI 연결용 변수
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        // (+)
+        if (healthUI != null)
+            healthUI.SetHealth(currentHealth, maxHealth);
+
         Debug.Log("게임 시작! 현재 체력: " + currentHealth);
     }
 
@@ -21,6 +27,11 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+
+        // (+)
+        if (healthUI != null)
+            healthUI.SetHealth(currentHealth, maxHealth);
+
         Debug.Log("플레이어가 " + damage + "의 피해를 입었습니다! 현재 체력: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -35,7 +46,17 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth += amount;
+
+        // (+)
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
         Debug.Log(amount + "만큼 체력 회복! 현재 체력: " + currentHealth);
+
+
+        // (+)
+        if (healthUI != null)
+            healthUI.SetHealth(currentHealth, maxHealth);
     }
 
     void Die()
@@ -63,5 +84,11 @@ public class PlayerHealth : MonoBehaviour
         // --- 여기까지 ---
 
         // Destroy(gameObject); // 플레이어 오브젝트를 파괴하는 대신, 게임을 멈추도록 변경합니다.
+    }
+
+    // (+)
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

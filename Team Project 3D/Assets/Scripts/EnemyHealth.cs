@@ -141,4 +141,10 @@ public class EnemyHealth : MonoBehaviour
             Debug.LogError("LootBox 프리팹에 LootBox.cs 스크립트가 없습니다!");
         }
     }
+
+    // (+) 현재 체력 반환 함수
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
 }
