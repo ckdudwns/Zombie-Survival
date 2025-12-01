@@ -50,6 +50,28 @@ public class ItemPickup : MonoBehaviour, IInteractable
                     invManager.AddItem(itemData);
                     Debug.Log(itemData.itemName + "을(를) 획득했습니다.");
 
+                    // (+) 여기서 선택 퀘스트 실행
+                    if (itemData.itemName == "USB")
+                    {
+                        QuestManager.instance.USBAcquired = true;
+                    }
+
+                    if (itemData.itemName == "FlareGun")
+                    {
+                        QuestManager.instance.FlaregunAcquired = true;
+                    }
+
+                    if (invManager.HasItem("CarKey") && invManager.HasItem("Dynamite"))
+                    {
+                        Debug.Log("퀘스트 분기 완료");
+                        QuestManager.instance.CarItemsAcquired = true;
+                    }
+
+                    if (invManager.HasItem("BoatKey") && invManager.HasItem("Fuel"))
+                    {
+                        QuestManager.instance.BoatItemsAcquired = true;
+                    }
+
                     USBPickedTrigger trigger = GetComponent<USBPickedTrigger>();
                     if (trigger != null)
                     {
