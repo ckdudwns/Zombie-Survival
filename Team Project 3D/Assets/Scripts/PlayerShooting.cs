@@ -26,8 +26,14 @@ public class PlayerShooting : MonoBehaviour
     [Header("오디오 설정")]
     public AudioSource audioSource;
 
+<<<<<<< Updated upstream
+=======
+    [Header("UI")]
+    public AmmoUI ammoUI;
+
+>>>>>>> Stashed changes
     // --- Private 변수 ---
-    private int currentAmmo; // 현재 탄창의 총알
+    private int currentAmmo;
     private bool isReloading = false;
     private float nextTimeToFire = 0f;
     private Player playerController;
@@ -36,7 +42,6 @@ public class PlayerShooting : MonoBehaviour
     private static readonly int IsAimingHash = Animator.StringToHash("IsAiming");
     private static readonly int FireHash = Animator.StringToHash("Fire");
 
-    // 총알 관리를 위한 딕셔너리
     private Dictionary<string, int> reserveAmmoCounts = new Dictionary<string, int>();
     private Dictionary<string, int> currentMagazineAmmo = new Dictionary<string, int>();
 
@@ -52,12 +57,10 @@ public class PlayerShooting : MonoBehaviour
         {
             foreach (Gun gun in availableGuns)
             {
-                // 예비탄창 초기화
                 if (!reserveAmmoCounts.ContainsKey(gun.gunName))
                 {
                     reserveAmmoCounts.Add(gun.gunName, gun.maxReserveAmmo);
                 }
-                // 현재 탄창 초기화
                 if (!currentMagazineAmmo.ContainsKey(gun.gunName))
                 {
                     int startAmmo = Mathf.Min(gun.startMagazineAmmo, gun.maxAmmo);
@@ -67,44 +70,40 @@ public class PlayerShooting : MonoBehaviour
             EquipGun(0);
         }
 
-        if (scopeOverlay != null)
-            scopeOverlay.SetActive(false);
+        if (scopeOverlay != null) scopeOverlay.SetActive(false);
     }
 
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        if (DialogueUI.instance != null && DialogueUI.instance.isDialogueOpen) return;
+>>>>>>> Stashed changes
         if (Player.isPaused) return;
 
         HandleWeaponSwitching();
 
         if (currentGun == null) return;
 
-        if (currentGun.isScopable)
-        {
-            HandleAimingInput();
-        }
+        if (currentGun.isScopable) HandleAimingInput();
 
         if (isReloading) return;
 
-        // 1. 발사 입력 감지
         if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
         {
-            // [핵심 수정] 먼저 총에게 "네가 직접 쏘는 방식(FlareGun)이니?" 하고 물어봅니다.
+            // 플레어건 자체 발사 로직 시도
             if (currentGun.TryCustomFire())
             {
-                // true가 돌아오면: 플레어 건이 스스로 발사 로직을 처리했다는 뜻입니다.
-                // PlayerShooting은 쿨타임만 적용하고, 기본 Shoot()은 실행하지 않습니다.
                 nextTimeToFire = Time.time + 1f / currentGun.fireRate;
             }
-            else
+            else // 일반 총 발사
             {
-                // false가 돌아오면: 일반 총(라이플/샷건)이므로 PlayerShooting이 대신 쏴줍니다.
                 if (currentAmmo > 0)
                 {
                     nextTimeToFire = Time.time + 1f / currentGun.fireRate;
-                    Shoot(); // 일반 발사 (레이캐스트)
+                    Shoot();
                 }
-                else // 탄창이 비었을 때
+                else
                 {
                     nextTimeToFire = Time.time + 0.3f;
                     if (audioSource != null && currentGun.emptyClipSound != null)
@@ -112,7 +111,6 @@ public class PlayerShooting : MonoBehaviour
                         audioSource.PlayOneShot(currentGun.emptyClipSound);
                     }
 
-                    // 자동 재장전 시도
                     string gunNameKey = currentGun.gunName;
                     if (reserveAmmoCounts.ContainsKey(gunNameKey) && reserveAmmoCounts[gunNameKey] > 0)
                     {
@@ -126,7 +124,6 @@ public class PlayerShooting : MonoBehaviour
             }
         }
 
-        // 2. 재장전 입력 (R키)
         if (!isAiming && Input.GetKeyDown(KeyCode.R))
         {
             if (currentAmmo >= currentGun.maxAmmo)
@@ -146,6 +143,27 @@ public class PlayerShooting : MonoBehaviour
                 }
             }
         }
+    }
+
+    // ==========================================
+    // [추가됨] QuestManager가 무기 해금 여부를 확인할 때 사용
+    // ==========================================
+    public bool IsGunUnlocked(string gunNameToCheck)
+    {
+        if (availableGuns == null) return false;
+
+        foreach (Gun gun in availableGuns)
+        {
+            // 대소문자/공백 무시하고 비교
+            string myGunName = gun.gunName.Replace(" ", "").ToLower();
+            string targetName = gunNameToCheck.Replace(" ", "").ToLower();
+
+            if (myGunName == targetName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void HandleAimingInput()
@@ -303,6 +321,11 @@ public class PlayerShooting : MonoBehaviour
                 crosshairImage.enabled = false;
             }
         }
+<<<<<<< Updated upstream
+=======
+        currentAmmo = currentMagazineAmmo[gunNameKey];
+        UpdateAmmoUI();
+>>>>>>> Stashed changes
     }
 
     IEnumerator Reload()
@@ -341,9 +364,12 @@ public class PlayerShooting : MonoBehaviour
 
         currentMagazineAmmo[gunNameKey] = currentAmmo;
         isReloading = false;
+<<<<<<< Updated upstream
+=======
+        UpdateAmmoUI();
+>>>>>>> Stashed changes
     }
 
-    // 일반 총기(라이플, 샷건) 발사 로직
     void Shoot()
     {
         if (audioSource != null && currentGun.fireSound != null)
@@ -389,6 +415,12 @@ public class PlayerShooting : MonoBehaviour
         {
             FireSingleShot();
         }
+<<<<<<< Updated upstream
+=======
+
+        currentMagazineAmmo[currentGun.gunName] = currentAmmo;
+        UpdateAmmoUI();
+>>>>>>> Stashed changes
     }
 
     void FireSingleShot()
@@ -445,7 +477,6 @@ public class PlayerShooting : MonoBehaviour
 
     void HandleHit(RaycastHit hit, int damageToDeal)
     {
-        // EnemyHealth 스크립트가 있다면 데미지 처리
         EnemyHealth enemy = hit.transform.GetComponentInParent<EnemyHealth>();
         if (enemy != null)
         {
@@ -469,4 +500,15 @@ public class PlayerShooting : MonoBehaviour
             Instantiate(currentGun.bulletPrefab, currentGun.firePoint.position, bulletRotation);
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    void UpdateAmmoUI()
+    {
+        if (ammoUI != null && currentGun != null)
+        {
+            ammoUI.SetAmmo(currentGun.gunName, currentAmmo, currentGun.maxAmmo, reserveAmmoCounts[currentGun.gunName]);
+        }
+    }
+>>>>>>> Stashed changes
 }

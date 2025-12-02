@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: JerryCan
   m_EditorClassIdentifier: 
   itemName: JerryCan
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7f8197ed7c1273c4db201da30ecdfe3a, type: 3}
   description: Item Description
+  isUsable: 0
