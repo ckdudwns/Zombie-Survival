@@ -8,8 +8,8 @@ public class CarEndingTrigger : MonoBehaviour
     public GameObject endingUIPanel;
 
     [Header("필요 아이템 설정 (ScriptableObject의 이름과 동일해야 함)")]
-    public string carKeyName = "CarKey"; // 자동차 키 이름 (기존 BoatKey -> CarKey 수정)
-    public string fuelName = "JerryCan"; // [수정됨] 연료 이름 JerryCan
+    public string boatKeyName = "BoatKey"; // 인벤토리상의 보트키 이름
+    public string fuelName = "Fuel";       // 인벤토리상의 기름 이름
 
     [Header("상호작용 설정")]
     public KeyCode interactKey = KeyCode.E; // 상호작용 키
@@ -34,37 +34,35 @@ public class CarEndingTrigger : MonoBehaviour
     void AttemptEscape()
     {
         // 싱글톤 인스턴스가 없는 경우 에러 방지
-        if (QuestManager.instance == null)
+        if (InventoryManager.instance == null)
         {
-            Debug.LogError("QuestManager가 씬에 없습니다!");
+            Debug.LogError("InventoryManager가 씬에 없습니다!");
             return;
         }
 
-        // [핵심 변경] QuestManager에게 자동차 상호작용 위임
-        // QuestManager 내부에서 터널 폭파 여부와 연료(JerryCan) 소지 여부를 확인하고,
-        // 조건이 맞으면 엔딩 퀘스트(q10_car_end)를 시작하거나 부족 메시지를 띄웁니다.
-        QuestManager.instance.ProcessCarInteraction();
-
-        // 만약 퀘스트 매니저를 안 쓰고 직접 여기서 끝내고 싶다면 아래 주석을 참고하세요.
-        /*
-        bool hasKey = InventoryManager.instance.HasItem(carKeyName);
-        bool hasFuel = InventoryManager.instance.HasItem(fuelName); // JerryCan 확인
+        // 1. InventoryManager의 HasItem 함수를 호출하여 검사
+        bool hasKey = InventoryManager.instance.HasItem(boatKeyName);
+        bool hasFuel = InventoryManager.instance.HasItem(fuelName);
 
         if (hasKey && hasFuel)
         {
             Debug.Log("탈출 조건 충족! 엔딩을 시작합니다.");
+
+            // (선택 사항) 탈출 시 아이템을 소비하고 싶다면 주석을 해제하세요.
+            // InventoryManager.instance.RemoveItemByName(boatKeyName);
+            // InventoryManager.instance.RemoveItemByName(fuelName);
+
             ShowEnding();
         }
         else
         {
-            Debug.Log($"탈출 불가: 키 보유({hasKey}), 연료 보유({hasFuel})");
+            // 아이템이 부족할 때
+            Debug.Log($"탈출 불가: 키 보유({hasKey}), 기름 보유({hasFuel})");
+            // 여기에 "아이템이 부족합니다" 같은 UI 텍스트를 띄우는 코드를 추가할 수 있습니다.
         }
-        */
     }
 
-    // 이 함수는 QuestManager에서 엔딩 조건을 달성했을 때 호출하거나,
-    // QuestManager의 q10_car_end 완료 시점에 호출할 수 있습니다.
-    public void ShowEnding()
+    void ShowEnding()
     {
         if (endingUIPanel != null)
         {

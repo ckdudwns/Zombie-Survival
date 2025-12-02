@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BoatKey
   m_EditorClassIdentifier: 
   itemName: BoatKey
-  icon: {fileID: 21300000, guid: 86b5bcabf3d3ea0499518478bca8bd3e, type: 3}
+  icon: {fileID: 0}
   description: Item Description

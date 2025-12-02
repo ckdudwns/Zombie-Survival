@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: USB
   m_EditorClassIdentifier: 
   itemName: USB
-  icon: {fileID: 21300000, guid: b28058eee4674ef40b6531e9d6f58785, type: 3}
+  icon: {fileID: 0}
   description: Item Description
-  isUsable: 0

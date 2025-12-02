@@ -84,6 +84,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7203688626665590847, guid: 93022fe0d96179447ad61a75d40fe493, type: 3}
+--- !u!114 &568919429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206332085180738619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e20671e4b70f5a4d92ca9d5cc43261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItemName: USB
+  successMessage: "\uB2E4\uC6B4\uB85C\uB4DC\uAC00 \uC2DC\uC791\uB429\uB2C8\uB2E4."
+  failMessage: "\uD544\uC694\uD55C \uC544\uC774\uD15C\uC774 \uC5C6\uC2B5\uB2C8\uB2E4."
 --- !u!114 &568919430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemName: USB
-  downloadTime: 5
-  onDownloadComplete:
-    m_PersistentCalls:
-      m_Calls: []
+  downloadTime: 30

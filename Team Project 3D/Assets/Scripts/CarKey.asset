@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarKey
   m_EditorClassIdentifier: 
   itemName: CarKey
-  icon: {fileID: 21300000, guid: 21231440d1c95404bba3f43dd7b27f07, type: 3}
+  icon: {fileID: 0}
   description: Item Description
