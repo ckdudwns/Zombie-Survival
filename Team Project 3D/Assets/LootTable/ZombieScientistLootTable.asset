@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleItems:
   - type: 0
-    itemData: {fileID: 11400000, guid: 63fb88c2e9ad9284c887fa19c48a201a, type: 2}
+    itemData: {fileID: 11400000, guid: 1d6077ce322a74948bd98ca3c12c9460, type: 2}
     ammoAmount: 0
     dropChance: 100

@@ -1,504 +1,210 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class QuestData
 {
     public string questID;
-    [TextArea]
-    public string questTitle;
+    [TextArea] public string questTitle;
+
+    [Header("ëŒ€ì‚¬ ì„¤ì •")]
     public string[] dialogueLines;
+    public AudioClip[] dialogueSounds;
+
+    [Tooltip("0 = ëê¹Œì§€ ì¬ìƒ, ìˆ«ì = í•´ë‹¹ ì‹œê°„(ì´ˆ)ë§Œí¼ ì¬ìƒ")]
+    public float[] soundDurations;
+
+    [Tooltip("ì²´í¬í•˜ë©´ ìŠ¤í˜ì´ìŠ¤ë°”ë¥¼ ëˆŒëŸ¬ë„ ì†Œë¦¬ê°€ ì•ˆ ëŠê¸°ê³  ê³„ì† ë‚˜ì˜µë‹ˆë‹¤.")]
+    public bool[] keepSoundOnSkip;
+
+    [Header("ë°°ê²½ìŒì•… (ë¹„ì›Œë‘ë©´ ì´ì „ ìŒì•… ìœ ì§€)")]
+    public AudioClip questBgm;
+
     public string nextQuestID;
 
     [HideInInspector] public System.Func<bool> completionCondition;
     [HideInInspector] public bool dialogueShown = false;
 }
 
-public enum QuestState
-{
-    NotStarted,
-    InProgress,
-    Completed
-}
+public enum QuestState { NotStarted, InProgress, Completed }
 
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
     private Dictionary<string, QuestState> questStates = new Dictionary<string, QuestState>();
     public List<QuestData> questList = new List<QuestData>();
-    public Transform doorApart;  // ÀÎ½ºÆåÅÍ¿¡¼­ ¿¬°á
-    public Transform doorServer;  // ÀÎ½ºÆåÅÍ¿¡¼­ ¿¬°á
-    // ÀÌº¥Æ® Æ®¸®°Å¿ë bool
-    [HideInInspector] public bool USBAcquired = false;
+
+    [Header("ì˜¤ë¸Œì íŠ¸ ì—°ê²°")]
+    public Transform doorApart;
+    public Transform doorServer;
+    public LaptopInteraction serverLaptop;
+    public PlayerShooting playerShooting;
+
+    [Header("UI ì—°ê²°")]
+    public CanvasGroup fadeScreen;
+
+    [Header("ì‚¬ìš´ë“œ ì„¤ì •")]
+    public AudioSource audioSource;
+    public AudioSource managerRingtoneSource;
+
+    [Header("í—¬ê¸° êµ¬ì¡° ìŠ¤í¬ë¦½íŠ¸ ì—°ê²°")]
+    public FlareHelicopterRescueV2 heliRescueScript;
+
+    // ë‚´ë¶€ ìƒíƒœ ë³€ìˆ˜ë“¤
+    private bool boatEscapeTriggered = false;
+    private bool isTunnelBlown = false;
+    private bool isFlaregunDialoguePlayed = false;
+    private bool isFlareFired = false;
+    private bool isHeliBoarded = false;
+
+    // í”„ë¡œí¼í‹°
+    public bool USBAcquired => HasItemFlexible("usb");
+    public bool FlaregunAcquired { get { if (playerShooting != null) return playerShooting.IsGunUnlocked("FlareGun"); return false; } }
+    public bool CarItemsAcquired => HasItemFlexible("carkey");
+    public bool BoatItemsAcquired => HasItemFlexible("boatkey");
+    public bool HasFuel => HasItemFlexible("jerrycan");
+    public bool IsVIPSaved => GetQuestState("q08_save_end") == QuestState.Completed;
     [HideInInspector] public bool VIPSpoken = false;
-    [HideInInspector] public bool FlaregunAcquired = false;
-    [HideInInspector] public bool CarItemsAcquired = false;
-    [HideInInspector] public bool BoatItemsAcquired = false;
 
     private void Awake()
     {
         instance = this;
-
-        // Äù½ºÆ® µ¥ÀÌÅÍ µî·Ï
-        // ±âÁ¸ ÄÚµå ±×´ë·Î
-        questList = new List<QuestData>()
-        {
-// ============================
-// 0. °ÔÀÓ ½ÃÀÛ ÀÎÆ®·Î
-// ============================
-new QuestData {
-    questID = "q00",
-    questTitle = "ÀÓ¹« ½ÃÀÛ",
-    dialogueLines = new string[]{
-        "(¾ÏÀü. ÆÄµµ ¼Ò¸®¡¦ °ÅÄ£ Åë½Å ¿¬°áÀ½ÀÌ ¼¯ÀÎ´Ù.)",
-        "ÁÖÀÎ°ø: ¿©±â´Â µ¨Å¸. ¼­¹ö °ü¸®ÀÚ, ³» ¸ñ¼Ò¸® µé¸®³ª? ...¹İº¹ÇÑ´Ù. °ü¸®ÀÚ, ÀÀ´äÇÏ¶ó.",
-        "(¶Ò- ¿¬°áÀ½ÀÌ ²÷±â°í ÁöÁ÷°Å¸®´Â ³ëÀÌÁî)",
-        "º»ºÎ(¹«Àü): ¿ä¿ø, ±×¸¸µÎ°Ô. ±× È¸¼±Àº Á×¾ú¾î.",
-        "º»ºÎ(¹«Àü): ±× ¼¶Àº ÀÌ¹Ì ¹ÙÀÌ·¯½º·Î ºØ±«µÈ Áö ¿À·¡´Ù.",
-        "º»ºÎ(¹«Àü): ÀÚ³× ÀÓ¹«´Â '»ıÁ¸ÀÚ ¼ö»ö'ÀÌ ¾Æ´Ï´Ù.",
-        "º»ºÎ(¹«Àü): ¼­¹ö½ÇÀÇ 'Á»ºñ ¹é½Å µ¥ÀÌÅÍ USB' È¸¼ö. ±×°Ô ÃÖ¿ì¼±ÀÌ´Ù.",
-        "º»ºÎ(¹«Àü): °¨Á¤¿¡ ÈÖµÑ¸®Áö ¸»°í µ¥ÀÌÅÍ¸¸ È®º¸ÇØ. ÀÌ»ó.",
-        "(È­¸éÀÌ ¹à¾ÆÁö¸ç °ÔÀÓ ½ÃÀÛ)"
-    },
-    nextQuestID = "q01"
-},
-
-// ============================
-// 1. ÀüÈ­ º§¼Ò¸® ÀÌº¥Æ®
-// ============================
-new QuestData {
-    questID = "q01",
-    questTitle = "º§¼Ò¸®¸¦ µû¶ó°¡¶ó",
-    dialogueLines = new string[]{
-        "(¾îµò°¡¿¡¼­ Èñ¹ÌÇÏ°Ô ¿ï¸®´Â º§¼Ò¸®¡¦)",
-        "ÁÖÀÎ°ø(µ¶¹é): ÀÌ º§¼Ò¸®´Â¡¦?",
-        "ÁÖÀÎ°ø(µ¶¹é): ¹æ±İ º¸³½ È£Ãâ ½ÅÈ£°¡ »ì¾ÆÀÖ´ø °Ç°¡?",
-        "ÁÖÀÎ°ø(µ¶¹é): »ì¾ÆÀÖµç Á×¾úµç, ´Ü¼­´Â ¹İµå½Ã ÀÖ´Ù. ¼Ò¸®¸¦ µû¶ó°¡ÀÚ."
-    },
-    nextQuestID = "q02"
-},
-
-// ============================
-// 2. ¼­¹ö°ü¸®ÀÚ Á»ºñ ¹ß°ß
-// ============================
-new QuestData {
-    questID = "q02",
-    questTitle = "°¨¿°µÈ °ü¸®ÀÚ¸¦ ¹ß°ßÇß´Ù",
-    dialogueLines = new string[]{
-        "(º§¼Ò¸®°¡ ¸ØÃá °÷¡¦ Á»ºñ·Î º¯ÇÑ °ü¸®ÀÚ°¡ ¼­¼ºÀÎ´Ù.)",
-        "ÁÖÀÎ°ø(µ¶¹é): ÀÌ¹Ì °¨¿°µÆ±º.",
-        "ÁÖÀÎ°ø(µ¶¹é): ¹Ì¾ÈÇÏÁö¸¸, ´Ü¼­¸¦ À§ÇØ¼­¶óµµ º¸³»Áà¾ß ÇÑ´Ù."
-    },
-    nextQuestID = "q03"
-},
-
-// ============================
-// 3. °ü¸®ÀÚ¸¦ Ã³Ä¡ÇÏ°í ÈŞ´ëÀüÈ­ È¹µæ
-// ============================
-new QuestData {
-    questID = "q03",
-    questTitle = "°ü¸®ÀÚ¸¦ Ã³Ä¡ÇÏ°í ´Ü¼­¸¦ Ã£¾Æ¶ó",
-    dialogueLines = new string[]{
-        "Á»ºñ °ü¸®ÀÚ Ã³Ä¡ ¿Ï·á.",
-        "½Ã½ºÅÛ: ¾ÆÀÌÅÛ È¹µæ - ¼­¹ö°ü¸®ÀÚÀÇ ÈŞ´ëÀüÈ­",
-        "ÁÖÀÎ°ø(µ¶¹é): ¾ÆÁ÷ ÀÛµ¿ÇÏ³×. ¼­¹ö½Ç À§Ä¡¸¦ Ã£À» ¼ö ÀÖ°Ú¾î."
-    },
-    nextQuestID = "q04"
-},
-
-// ============================
-// 4. ÈŞ´ëÀüÈ­ Á¤º¸ È®ÀÎ (Áöµµ/¹®ÀÚ ÆÛÁñ)
-// ============================
-new QuestData {
-    questID = "q04",
-    questTitle = "ÈŞ´ëÀüÈ­ Á¤º¸¸¦ ÇØµ¶ÇÏ¶ó",
-    dialogueLines = new string[]{
-        "Áöµµ ¾Û ½ÇÇà...",
-        "ÁÖÀÎ°ø(µ¶¹é): ¹éÈ­Á¡, ÁÖÂ÷Å¸¿ö¡¦ ¼­¹ö½Ç À§Ä¡ È®ÀÎ.",
-        "¹®ÀÚ ±â·Ï ºĞ¼® Áß...",
-        "¹®Á¦: ¼ıÀÚ¾ß±¸ ÆÛÁñ(159, 765, 576)À» Á¶ÇÕÇØ ÁÖ¼Ò¸¦ Ã£¾Æ¶ó.",
-        "ÁÖÀÎ°ø(µ¶¹é): °¡´ÉÇÑ Á¶ÇÕÀº ÇÏ³ª»ÓÀÌ´Ù. ´äÀ» Ã£¾Ò´Ù."
-    },
-    nextQuestID = "q05"
-},
-
-// ============================
-// 5. °ü¸®ÀÚÀÇ Áı µµÂø
-// ============================
-new QuestData {
-    questID = "q05",
-    questTitle = "°ü¸®ÀÚÀÇ ÁıÀ» Ã£¾Æ¶ó",
-    dialogueLines = new string[]{
-        "7µ¿ 756È£ µµÂø.",
-        "¹®ÀÌ ¿­·Á ÀÖ´Ù."
-    },
-    nextQuestID = "q06"
-},
-
-// ============================
-// 6. ¼­¹ö½Ç·Î ÀÌµ¿
-// ============================
-new QuestData {
-    questID = "q06",
-    questTitle = "¼­¹ö½Ç·Î ÀÌµ¿ÇÏ¶ó",
-    dialogueLines = new string[]{
-        "¼­¹ö½Ç ¿­¼è È¹µæ ¿Ï·á.",
-        "ÁÖÀÎ°ø(µ¶¹é): Àåºñ Á¡°ËÇÏ°í ¼­¹ö½Ç·Î °£´Ù."
-    },
-    nextQuestID = "q07"
-},
-
-// ============================
-// 7. ¼­¹ö½Ç µ¥ÀÌÅÍ º¹»ç
-// ============================
-new QuestData {
-    questID = "q07",
-    questTitle = "µ¥ÀÌÅÍ¸¦ º¹»çÇÏ¶ó",
-    dialogueLines = new string[]{
-        "µ¥ÀÌÅÍ º¹»ç Áß¡¦ 0% ¡æ 90% ¡æ 100%",
-        "½Ã½ºÅÛ: USB µ¥ÀÌÅÍ È®º¸ ¿Ï·á",
-        "º»ºÎ(¹«Àü): ¹é½Å µ¥ÀÌÅÍ È®º¸ È®ÀÎ. ÀßÇß´Ù, ¿ä¿ø.",
-        "º»ºÎ(¹«Àü): Ãß°¡ ¸í·É. VIP ÄÚµå¸í ¡®·Î¿­¡¯ÀÇ ½ÅÈ£°¡ Æ÷ÂøµÆ´Ù.",
-        "(»ß-»ß-»ß- ¼­¹ö½Ç °æº¸ ¹ßµ¿)",
-        "½Ã½ºÅÛ: °æ°í - Á»ºñµéÀÌ 1Â÷ °­È­ »óÅÂ¿¡ µ¹ÀÔÇß½À´Ï´Ù!",
-        "º»ºÎ(¹«Àü): À§ÇèÇÏ¸é VIP´Â Æ÷±âÇØµµ¡¦ µ¥ÀÌÅÍ¸¸ÀÌ¶óµµ¡¦ Ä¡Á÷¡¦"
-    },
-    nextQuestID = "q08"
-},
-
-// ============================
-// 8. °æº¸ + Á»ºñ °­È­ + ¼±ÅÃ Äù½ºÆ® °³¹æ
-// ============================
-new QuestData {
-    questID = "q08",
-    questTitle = "Å»Ãâ ¹æ¹ıÀ» Ã£¾Æ¶ó",
-    dialogueLines = new string[]{
-        "°æº¸°¡ ¿ï·Á ÆÛÁø´Ù!",
-        "Á»ºñ°¡ 1Â÷ °­È­ »óÅÂ¿¡ µ¹ÀÔÇß´Ù!",
-        "º»ºÎ: VIP ±¸Á¶´Â ¼±ÅÃÀÌ´Ù. ÆÇ´ÜÀº ¿ä¿ø¿¡°Ô ¸Ã±ä´Ù."
-    },
-    nextQuestID = "" // ¿©±â¼­ ¼±ÅÃÁö
-},
-
-// ----------------------------
-// ¼±ÅÃ Äù½ºÆ®: VIP ±¸Ãâ ·çÆ®
-// ----------------------------
-new QuestData {
-    questID = "q08_save",
-    questTitle = "VIP¸¦ ±¸ÃâÇÏ¶ó (¼±ÅÃ)",
-    dialogueLines = new string[]{
-        "VIP°¡ ¹éÈ­Á¡ ÀÎ±Ù¿¡¼­ ¹ß°ßµÆ´Ù.",
-        "ÁÖÀÎ°ø(µ¶¹é): À§ÇèÇÏÁö¸¸¡¦ »ì¸± ¼ö ÀÖ´Ù¸é »ì·Á¾ß ÇÑ´Ù."
-    },
-    nextQuestID = "q08_save_escape"
-},
-
-new QuestData {
-    questID = "q08_save_escape",
-    questTitle = "VIP¿Í ÇÔ²² Å»ÃâÇÏ¶ó",
-    dialogueLines = new string[]{
-        "VIP È®º¸ ¿Ï·á.",
-        "»óÅÂ ÀÌ»ó: VIP È£À§ - ÀÌµ¿¼Óµµ °¨¼Ò.",
-        "ÁÖÀÎ°ø(µ¶¹é): Á¶½ÉÇØ¼­ ÀÌµ¿ÇÏÀÚ."
-    },
-    nextQuestID = "q08_save_end"
-},
-
-new QuestData {
-    questID = "q08_save_end",
-    questTitle = "Å»Ãâ",
-    dialogueLines = new string[]{
-        "VIP¿Í ÇÔ²² Å»Ãâ¿¡ ¼º°øÇß´Ù.",
-        "ÁÖÀÎ°øÀº ¿µ¿õÀ¸·Î ±â·ÏµÉ °ÍÀÌ´Ù."
-    },
-    nextQuestID = ""
-},
-
-// ============================
-// Çï±â Å»Ãâ ·çÆ®
-// ============================
-new QuestData {
-    questID = "q09_heli",
-    questTitle = "Çï±â·Î Å»ÃâÇÏ¶ó",
-    dialogueLines = new string[]{
-        "ÇÃ·¹¾î°Ç È¹µæ.",
-        "ÁÖÂ÷Å¸¿ö ¿Á»ó¿¡¼­ ½ÅÈ£ÅºÀ» ½÷¾ß ÇÑ´Ù."
-    },
-    nextQuestID = "q09_heli_defense"
-},
-
-new QuestData {
-    questID = "q09_heli_defense",
-    questTitle = "3ºĞ°£ ¹öÅß¶ó",
-    dialogueLines = new string[]{
-        "ÇÃ·¹¾î°Ç ¹ß»ç!",
-        "Á»ºñ 2Â÷ °­È­ µ¹ÀÔ!",
-        "Çï±â µµÂø±îÁö 3ºĞ µ¿¾È ¹öÅß¶ó!"
-    },
-    nextQuestID = "q09_heli_end"
-},
-
-new QuestData {
-    questID = "q09_heli_end",
-    questTitle = "Çï±â Å»Ãâ",
-    dialogueLines = new string[]{
-        "Çï±â°¡ µµÂøÇß´Ù!",
-        "Çï±â¿¡ Å¾½ÂÇØ ¼¶À» ¹ş¾î³µ´Ù."
-    },
-    nextQuestID = ""
-},
-
-// ============================
-// ÀÚµ¿Â÷ Å»Ãâ ·çÆ®
-// ============================
-new QuestData {
-    questID = "q10_car",
-    questTitle = "ÀÚµ¿Â÷·Î Å»ÃâÇÏ¶ó",
-    dialogueLines = new string[]{
-        "Â÷ Å° + Æø¹ß¹° È¹µæ.",
-        "ÅÍ³Î¸¸ ¶ÕÀ¸¸é À°·Î·Î ³ª°¥ ¼ö ÀÖ´Ù."
-    },
-    nextQuestID = "q10_car_tunnel"
-},
-
-new QuestData {
-    questID = "q10_car_tunnel",
-    questTitle = "ÅÍ³ÎÀ» ÆøÆÄÇÏ¶ó",
-    dialogueLines = new string[]{
-        "Æø¹ß¹° ¼³Ä¡¡¦ Äâ¾Ó!",
-        "Á»ºñ 2Â÷ °­È­ »óÅÂ µ¹ÀÔ!"
-    },
-    nextQuestID = "q10_car_end"
-},
-
-new QuestData {
-    questID = "q10_car_end",
-    questTitle = "Å»Ãâ",
-    dialogueLines = new string[]{
-        "ÀÚµ¿Â÷·Î ÅÍ³ÎÀ» ºüÁ®³ª¿Ô´Ù.",
-        "¼¶À» ¹ş¾î³ª´Â µ¥ ¼º°øÇß´Ù."
-    },
-    nextQuestID = ""
-},
-
-// ============================
-// ¹è Å»Ãâ ·çÆ®
-// ============================
-new QuestData {
-    questID = "q11_boat",
-    questTitle = "¹è·Î Å»ÃâÇÏ¶ó",
-    dialogueLines = new string[]{
-        "¹è Å° È¹µæ.",
-        "ºÎµÎ·Î ÀÌµ¿ÇÏÀÚ."
-    },
-    nextQuestID = "q11_boat_end"
-},
-
-new QuestData {
-    questID = "q11_boat_end",
-    questTitle = "Å»Ãâ",
-    dialogueLines = new string[]{
-        "¹è¸¦ Å¸°í ¼¶À» ¶°³µ´Ù.",
-        "»ıÁ¸¿¡ ¼º°øÇß´Ù."
-    },
-    nextQuestID = ""
-}
-        };
-
+        if (playerShooting == null) playerShooting = FindObjectOfType<PlayerShooting>();
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (fadeScreen != null) { fadeScreen.alpha = 0f; fadeScreen.blocksRaycasts = false; }
         SetupTestConditions();
     }
 
+    // [ë³€ê²½ë¨] ì™¸ë¶€ì—ì„œ í˜¸ì¶œí•  ìˆ˜ ìˆë„ë¡ publicìœ¼ë¡œ ë³€ê²½
+    public void PlayDialogueOnly(string questID)
+    {
+        QuestData quest = questList.Find(q => q.questID == questID);
+        if (quest != null && !quest.dialogueShown)
+        {
+            if (DialogueUI.instance != null)
+            {
+                DialogueUI.instance.ShowDialogue(
+                    quest.dialogueLines,
+                    quest.dialogueSounds,
+                    quest.soundDurations,
+                    quest.keepSoundOnSkip,
+                    () => {
+                        quest.dialogueShown = true;
+                        if (questID == "q01" && managerRingtoneSource != null)
+                        {
+                            if (!managerRingtoneSource.isPlaying) managerRingtoneSource.Play();
+                        }
+                    }
+                );
+            }
+            else
+            {
+                quest.dialogueShown = true;
+            }
+        }
+    }
+
+    // ì•„ì´í…œ ì²´í¬ í•¨ìˆ˜ë“¤
+    private bool HasItemFlexible(string targetName)
+    {
+        if (InventoryManager.instance == null) return false;
+        foreach (var item in InventoryManager.instance.items)
+        {
+            if (item == null) continue;
+            string myItemClean = item.itemName.Replace(" ", "").ToLower();
+            string targetClean = targetName.Replace(" ", "").ToLower();
+            if (myItemClean == targetClean) return true;
+        }
+        return false;
+    }
+
+    public void OnItemAdded(string rawItemName)
+    {
+        string name = rawItemName.Replace(" ", "").ToLower();
+        if (name.Contains("flaregun")) { isFlaregunDialoguePlayed = true; PlayDialogueOnly("q09_heli"); }
+        if (name.Contains("carkey") && CarItemsAcquired) PlayDialogueOnly("q10_car");
+        if ((name.Contains("boatkey") || name.Contains("jerrycan")) && BoatItemsAcquired && !boatEscapeTriggered) PlayDialogueOnly("q11_boat");
+    }
+
+    public void ProcessVIPInteraction() { VIPSpoken = true; if (GetQuestState("q08_save") == QuestState.NotStarted) StartQuest("q08_save"); }
+    public void ProcessBoatEscape() { if (GetQuestState("q08_save_escape") == QuestState.InProgress) boatEscapeTriggered = true; }
+    public void ProcessTunnelExplosion() { isTunnelBlown = true; if (GetQuestState("q10_car") == QuestState.InProgress) QuestComplete("q10_car"); }
+    public void ProcessCarInteraction() { if (!isTunnelBlown) { Debug.Log("í„°ë„ ë§‰í˜"); return; } if (HasFuel) StartQuest("q10_car_end"); else ShowFuelMissingDialogue("ìë™ì°¨"); }
+    public void ProcessPlayerBoatInteraction() { if (boatEscapeTriggered) return; if (HasFuel) StartQuest("q11_boat_end"); else ShowFuelMissingDialogue("ë°°"); }
+
+    public void ProcessFlareGunFired()
+    {
+        if (GetQuestState("q09_heli") == QuestState.InProgress)
+        {
+            isFlareFired = true;
+            if (heliRescueScript != null)
+            {
+                GameObject p = GameObject.FindGameObjectWithTag("Player");
+                if (p != null) heliRescueScript.CallHelicopter(p.transform.position);
+            }
+        }
+    }
+
+    public void ProcessHeliBoarding()
+    {
+        if (GetQuestState("q09_heli_end") == QuestState.InProgress)
+        {
+            isHeliBoarded = true;
+        }
+    }
+
+    private void ShowFuelMissingDialogue(string vehicleName) { if (DialogueUI.instance != null) DialogueUI.instance.ShowDialogue(new string[] { $"ì‹œë™ì´ ê±¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤.", $"ì£¼ì¸ê³µ: {vehicleName}ì— ì—°ë£Œê°€ ì—†ì–´! ì–´ë”˜ê°€ì— ê¸°ë¦„í†µ(JerryCan)ì´ ìˆì„ ê±°ì•¼." }, null); }
+
+    // ì…‹ì—…
     private void SetupTestConditions()
     {
-        questList[0].completionCondition = () =>
-        {
-            if (!questList[0].dialogueShown) return false;
-            // (!) »ç¿îµå Ãß°¡½Ã ¼öÁ¤
-            //if (!Sound.Instance.BellRang)
-            //{
-             //   Sound.Instance.PlayBell();
-              //  Enemy.Instance.MoveZombiesToBell();
-            //}
-            return true;
-        };
-
-        questList[1].completionCondition = () =>
-        {
-            if (!questList[1].dialogueShown) return false;
-
-            GameObject zombie = GameObject.Find("ZombieScientist1"); // (!) Á»ºñ ÇÁ¸®ÆÕ¸í º¯°æ ÇÊ¿ä½Ã ¼öÁ¤
-            if (zombie == null) return false;
-
-            Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            if (player == null) return false;
-
-            float distance = Vector3.Distance(zombie.transform.position, player.position);
-
-            // ¿øÇÏ´Â ¹üÀ§°ª (¿¹: 5f)
-            return distance <= 5f;
-        };
-
-
-            questList[2].completionCondition = () =>
-        {
-            if (!questList[2].dialogueShown) return false;
-            GameObject zombie = GameObject.Find("ZombieScientist1"); // (!) Á»ºñ ÇÁ¸®ÆÕ¸í º¯°æ ÇÊ¿ä½Ã ¼öÁ¤
-
-            // (!) ¿Ï·á½Ã Á¦°Å - Á»ºñ ÀÌ»óÀ¸·Î ¹Ù´Ú¿¡¼­ ¶³¾îÁö´Â Çö»óÀ¸·Î ÀÎÇØ ÀÓ½Ã Ã³¸®
-            if (InventoryManager.instance.HasItem("Phone"))
-            {
-                Debug.Log("Æù ÁÖ¿ò");
-                return true;
-
-            }
-            EnemyHealth health = zombie.GetComponent<EnemyHealth>();
-            return health != null && health.GetCurrentHealth() <= 0 && InventoryManager.instance.HasItem("Phone");
-        };
-
-        questList[3].completionCondition = () =>
-        {
-            if (!questList[3].dialogueShown) return false;
-
-            return questList[3].dialogueShown;
-        };
-
-        questList[4].completionCondition = () =>
-        {
-            if (!questList[4].dialogueShown) return false;
-            if (doorApart == null) return false;
-
-            Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            if (player == null) return false;
-
-            return Vector3.Distance(doorApart.position, player.position) <= 3f;
-        };
-
-        questList[5].completionCondition = () =>
-        {
-            if (!questList[5].dialogueShown) return false;
-            if (InventoryManager.instance.HasItem("ServerRoomCard")) Debug.Log("Ä«µå°¡ ÀÖ¾î¿ä");
-            return InventoryManager.instance.HasItem("ServerRoomCard");
-        };
-
-        questList[6].completionCondition = () =>
-        {
-            if (!questList[6].dialogueShown) return false;
-            if (doorServer == null) return false;
-
-            Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            if (player == null) return false;
-
-            return Vector3.Distance(doorServer.position, player.position) <= 3f;
-        };
-
-        questList[7].completionCondition = () =>
-        {
-            if (!questList[7].dialogueShown) return false;
-
-            // USB ¾ÆÀÌÅÛÀÌ ¾øÀ» ¶§¸¸ true
-            if (!InventoryManager.instance.HasItem("USB"))
-            {
-                Debug.Log("USB°¡ ¾ø½À´Ï´Ù!");
-                return true;
-            }
-
-            // USB°¡ ÀÖÀ¸¸é false ¹İÈ¯
-            return false;
-        };
-
-        questList[8].completionCondition = () =>
-        {
-            if (!questList[8].dialogueShown) return false;
-
-            // (!) USB´Â ÀÌ¹Ì q07¿¡¼­ È®º¸µÆ´Ù°í °¡Á¤ (ÀÓ½Ã·Î ÁÖ¼®Ã³¸®ÇÔ Á¦°ÅÇØ¾ßÇÔ)
-            //if (!questList[7].dialogueShown) return false;
-
-            // °¢ Á¶°ÇÀ» Ã¼Å©ÇÏ°í, ¿Ï·áµÇ¸é ´ÙÀ½ Äù½ºÆ®¸¦ ½ÃÀÛ
-            if (VIPSpoken && !string.IsNullOrEmpty(questList[9].questID))
-            {
-                StartQuest(questList[9].questID);
-            }
-
-            // ÇÊ¼ö ·çÆ®: ÇÃ·¹¾î°Ç, ÀÚµ¿Â÷, ¹è Áß ÇÏ³ª¶óµµ ¿Ï·áµÇ¸é q08 ¿Ï·á
-            bool anyMandatoryCompleted = FlaregunAcquired || CarItemsAcquired || BoatItemsAcquired;
-
-            // ÇØ´ç Á¶°ÇÀ» ¸¸Á·ÇÏ¸é ÈÄ¼Ó Äù½ºÆ® ½ÃÀÛ
-            if (FlaregunAcquired && !string.IsNullOrEmpty(questList[12].questID))
-            {
-                StartQuest(questList[12].questID);
-            }
-
-            if (CarItemsAcquired && !string.IsNullOrEmpty(questList[15].questID))
-            {
-                Debug.Log("ºĞ±â ¼º°ø");
-                StartQuest(questList[15].questID);
-            }
-
-            if (BoatItemsAcquired && !string.IsNullOrEmpty(questList[18].questID))
-            {
-                StartQuest(questList[18].questID);
-            }
-
-            // ÇÊ¼ö ·çÆ® Áß ÇÏ³ª¶óµµ ¿Ï·áµÇ¸é q08 ÀÚÃ¼ ¿Ï·á
-            if (anyMandatoryCompleted)
-            {
-                Debug.Log("q08 ¿Ï·á!");
-                return true;
-            }
-
-            return false;
-        };
-
-        // q08_save: VIP¿Í ´ëÈ­ÇØ¾ß ½ÃÀÛ
-        questList[9].completionCondition = () =>
-        {
-            if (!questList[9].dialogueShown) return false;
-            return VIPSpoken;
-        };
-
-        // q09_heli: ÇÃ·¹¾î°Ç È¹µæÇØ¾ß ½ÃÀÛ
-        questList[12].completionCondition = () =>
-        {
-            if (!questList[12].dialogueShown) return false;
-            return FlaregunAcquired;
-        };
-
-        // q10_car: ÀÚµ¿Â÷ ¾ÆÀÌÅÛ È¹µæÇØ¾ß ½ÃÀÛ
-        questList[15].completionCondition = () =>
-        {
-            if (!questList[15].dialogueShown) return false;
-            return CarItemsAcquired;
-        };
-
-        // q11_boat: ¹è ¾ÆÀÌÅÛ È¹µæÇØ¾ß ½ÃÀÛ
-        questList[18].completionCondition = () =>
-        {
-            if (!questList[18].dialogueShown) return false;
-            return BoatItemsAcquired;
-        };
-
-
+        if (questList == null || questList.Count == 0) return;
+        if (questList.Count > 0) questList[0].completionCondition = () => { return questList[0].dialogueShown; };
+        if (questList.Count > 1) questList[1].completionCondition = () => { return questList[1].dialogueShown && CheckDistance("ZombieScientist1", 10f); };
+        if (questList.Count > 2) questList[2].completionCondition = () => { return questList[2].dialogueShown && HasItemFlexible("phone"); };
+        if (questList.Count > 3) questList[3].completionCondition = () => { return questList[3].dialogueShown; };
+        if (questList.Count > 4) questList[4].completionCondition = () => { return questList[4].dialogueShown && CheckDistance(doorApart, 3f); };
+        if (questList.Count > 5) questList[5].completionCondition = () => { return questList[5].dialogueShown && HasItemFlexible("ServerRoomCard"); };
+        if (questList.Count > 6) questList[6].completionCondition = () => { return questList[6].dialogueShown && CheckDistance(doorServer, 3f); };
+        if (serverLaptop != null) serverLaptop.onDownloadComplete.AddListener(() => StartQuest("q07"));
+        if (questList.Count > 7) questList[7].completionCondition = () => { return questList[7].dialogueShown; };
+        if (questList.Count > 8) questList[8].completionCondition = () => { if (!questList[8].dialogueShown) return false; return FlaregunAcquired || CarItemsAcquired || BoatItemsAcquired; };
+        if (questList.Count > 9) questList[9].completionCondition = () => { return questList[9].dialogueShown; };
+        if (questList.Count > 10) questList[10].completionCondition = () => { return questList[10].dialogueShown && boatEscapeTriggered; };
+        if (questList.Count > 11) questList[11].completionCondition = () => { return questList[11].dialogueShown; };
+        if (questList.Count > 12) questList[12].completionCondition = () => { return isFlareFired; };
+        if (questList.Count > 13) questList[13].completionCondition = () => { return questList[13].dialogueShown; };
+        if (questList.Count > 14) questList[14].completionCondition = () => { return isHeliBoarded; };
+        if (questList.Count > 15) questList[15].completionCondition = () => { return isTunnelBlown; };
+        if (questList.Count > 16) questList[16].completionCondition = () => { return questList[16].dialogueShown; };
+        if (questList.Count > 17) questList[17].completionCondition = () => { return questList[17].dialogueShown; };
+        if (questList.Count > 18) questList[18].completionCondition = () => { return GetQuestState("q11_boat_end") == QuestState.InProgress; };
+        if (questList.Count > 19) questList[19].completionCondition = () => { return questList[19].dialogueShown; };
     }
 
     private void Update()
     {
         foreach (var quest in questList)
         {
-            // ´ë»ç°¡ ³¡³ª°í, ¾ÆÁ÷ ¿Ï·áµÇÁö ¾ÊÀº Äù½ºÆ®¸¸ Ã¼Å©
             if (GetQuestState(quest.questID) == QuestState.InProgress &&
-                quest.dialogueShown &&                // ´ë»ç°¡ ³¡³­ °æ¿ì¸¸
+                quest.dialogueShown &&
                 questStates[quest.questID] != QuestState.Completed &&
                 quest.completionCondition != null &&
                 quest.completionCondition())
             {
                 QuestComplete(quest.questID);
-                // ´ÙÀ½ Äù½ºÆ®´Â StartQuest¿¡¼­ ´ë»ç Ãâ·Â ½ÃÀÛ
-                break; // ÇÑ ÇÁ·¹ÀÓ¿¡ ÇÑ Äù½ºÆ®¸¸ Ã³¸®
+                break;
             }
         }
+        if (!isFlaregunDialoguePlayed && FlaregunAcquired) { isFlaregunDialoguePlayed = true; PlayDialogueOnly("q09_heli"); }
+        CheckStartEscapeQuests();
     }
 
+    private void CheckStartEscapeQuests() { if (GetQuestState("q08") != QuestState.Completed) return; if (FlaregunAcquired && GetQuestState("q09_heli") == QuestState.NotStarted) StartQuest("q09_heli"); if (CarItemsAcquired && GetQuestState("q10_car") == QuestState.NotStarted) StartQuest("q10_car"); if (BoatItemsAcquired && GetQuestState("q11_boat") == QuestState.NotStarted && !boatEscapeTriggered) StartQuest("q11_boat"); }
+    bool CheckDistance(string targetName, float dist) { GameObject t = GameObject.Find(targetName); GameObject p = GameObject.FindGameObjectWithTag("Player"); if (t == null || p == null) return false; return Vector3.Distance(t.transform.position, p.transform.position) <= dist; }
+    bool CheckDistance(Transform target, float dist) { GameObject p = GameObject.FindGameObjectWithTag("Player"); if (target == null || p == null) return false; return Vector3.Distance(target.position, p.transform.position) <= dist; }
 
     public void StartQuest(string questID)
     {
@@ -508,45 +214,104 @@ new QuestData {
         if (quest == null) return;
 
         questStates[questID] = QuestState.InProgress;
-        quest.dialogueShown = false;
+        Debug.Log($"Quest Started: {questID}");
 
-        DialogueUI.instance.ShowDialogue(
-            quest.dialogueLines,
-            () =>
+        if (quest.questBgm != null && SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayBGM(quest.questBgm);
+        }
+
+        PlayDialogueOnly(questID);
+    }
+
+    public int GetItemCount(string targetName) { if (InventoryManager.instance == null) return 0; int count = 0; foreach (var item in InventoryManager.instance.items) { if (item == null) continue; string myItemClean = item.itemName.Replace(" ", "").ToLower(); string targetClean = targetName.Replace(" ", "").ToLower(); if (myItemClean.Contains(targetClean)) count++; } return count; }
+    private string GetEndingSceneName(string escapeMethod) { bool vipSaved = IsVIPSaved; int dogTagCount = GetItemCount("dogtag"); string endingStatus = ""; if (!vipSaved) endingStatus = "Solo"; else { if (dogTagCount >= 5) endingStatus = "True"; else endingStatus = "Normal"; } string finalSceneName = $"Ending_{escapeMethod}_{endingStatus}"; Debug.Log($"[Ending Decision] ìˆ˜ë‹¨:{escapeMethod}, VIP:{vipSaved}, êµ°ë²ˆì¤„:{dogTagCount}ê°œ -> ì´ë™í•  ì”¬: {finalSceneName}"); return finalSceneName; }
+
+    IEnumerator WaitForHeliEscapeAndEnd(string sceneName, float delayTime)
+    {
+        Debug.Log($"[Ending] í—¬ê¸° ì´ë¥™ ì¤‘... {delayTime}ì´ˆ ëŒ€ê¸°");
+
+        yield return new WaitForSeconds(delayTime);
+
+        // í—¬ê¸°ë§Œ 4ì´ˆ í˜ì´ë“œ ì•„ì›ƒ
+        StartCoroutine(LoadEndingScene(sceneName, null, 4.0f));
+    }
+
+    IEnumerator LoadEndingScene(string sceneName, AudioClip endingSound, float fadeDuration)
+    {
+        Debug.Log($"[Ending] í˜ì´ë“œ ì•„ì›ƒ ì‹œì‘... {fadeDuration}ì´ˆ ë™ì•ˆ");
+
+        if (SoundManager.instance != null) SoundManager.instance.StopBGM();
+
+        if (DialogueUI.instance != null) DialogueUI.instance.panel.SetActive(false);
+
+        if (endingSound != null && audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(endingSound);
+        }
+
+        if (fadeScreen != null)
+        {
+            fadeScreen.blocksRaycasts = true;
+            float elapsed = 0f;
+
+            while (elapsed < fadeDuration)
             {
-                quest.dialogueShown = true;
+                elapsed += Time.deltaTime;
+                fadeScreen.alpha = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
+                yield return null;
             }
-        );
+            fadeScreen.alpha = 1f;
+        }
+        else
+        {
+            yield return new WaitForSeconds(fadeDuration);
+        }
+
+        if (Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError($"[Error] '{sceneName}' ì”¬ì´ ì—†ìŠµë‹ˆë‹¤!");
+        }
     }
 
     public void QuestComplete(string questID)
     {
         QuestData quest = questList.Find(q => q.questID == questID);
-        if (quest == null) return;
-        if (GetQuestState(questID) == QuestState.Completed) return;
-
+        if (quest == null || GetQuestState(questID) == QuestState.Completed) return;
         questStates[questID] = QuestState.Completed;
         Debug.Log($"Quest completed: {questID}");
 
-        if (!string.IsNullOrEmpty(quest.nextQuestID))
-            StartQuest(quest.nextQuestID);
-    }
+        if (questID == "q01" && managerRingtoneSource != null) managerRingtoneSource.Stop();
 
-    public QuestState GetQuestState(string questID)
-    {
-        if (questStates.ContainsKey(questID))
-            return questStates[questID];
-        return QuestState.NotStarted;
-    }
-
-    public QuestData GetCurrentQuest()
-    {
-        foreach (var quest in questList)
+        switch (questID)
         {
-            if (GetQuestState(quest.questID) == QuestState.InProgress)
-                return quest;
+            case "q08_save_end": if (!string.IsNullOrEmpty(quest.nextQuestID)) StartQuest(quest.nextQuestID); break;
+
+            case "q09_heli_end":
+                // í—¬ê¸°ë§Œ 4ì´ˆ í˜ì´ë“œ ì•„ì›ƒ
+                float waitTime = (quest.soundDurations.Length > 0 && quest.soundDurations[0] > 0) ? quest.soundDurations[0] : 4.0f;
+                StartCoroutine(WaitForHeliEscapeAndEnd(GetEndingSceneName("Heli"), waitTime));
+                break;
+
+            case "q10_car_end":
+                AudioClip cSound = (quest.dialogueSounds.Length > 0) ? quest.dialogueSounds[0] : null;
+                // ìë™ì°¨/ë°°ëŠ” 2ì´ˆ í˜ì´ë“œ ì•„ì›ƒ
+                StartCoroutine(LoadEndingScene(GetEndingSceneName("Car"), cSound, 2.0f));
+                break;
+            case "q11_boat_end":
+                AudioClip bSound = (quest.dialogueSounds.Length > 0) ? quest.dialogueSounds[0] : null;
+                // ìë™ì°¨/ë°°ëŠ” 2ì´ˆ í˜ì´ë“œ ì•„ì›ƒ
+                StartCoroutine(LoadEndingScene(GetEndingSceneName("Boat"), bSound, 2.0f));
+                break;
+
+            default: if (!string.IsNullOrEmpty(quest.nextQuestID)) StartQuest(quest.nextQuestID); break;
         }
-        return null;
     }
 
+    public QuestState GetQuestState(string questID) { if (questStates.ContainsKey(questID)) return questStates[questID]; return QuestState.NotStarted; }
 }

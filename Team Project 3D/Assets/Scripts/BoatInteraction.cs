@@ -39,7 +39,19 @@ public class BoatInteraction : MonoBehaviour
     {
         isDeparting = true; // 출발 상태로 변경
 
-        // 플레이어 속도 복구
+        Debug.Log("배가 항구를 떠납니다.");
+
+        // [추가됨] QuestManager에게 탈출 신호를 보냄 -> 엔딩 퀘스트(q08_save_end) 시작
+        if (QuestManager.instance != null)
+        {
+            QuestManager.instance.ProcessBoatEscape();
+        }
+        else
+        {
+            Debug.LogError("QuestManager가 존재하지 않습니다!");
+        }
+
+        // 플레이어 속도 복구 (VIP를 배에 태웠으므로 무거움 해제)
         if (playerScript != null)
         {
             playerScript.moveSpeed = targetMoveSpeed;
@@ -47,10 +59,9 @@ public class BoatInteraction : MonoBehaviour
             Debug.Log("치료 완료! 속도가 정상으로 돌아왔습니다.");
         }
 
-        Debug.Log("배가 항구를 떠납니다.");
-
         // (선택 사항) 더 이상 상호작용 못하게 Trigger 끄기
-        GetComponent<Collider>().enabled = false;
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
 
         // 일정 시간 뒤 배 삭제
         Destroy(gameObject, destroyDelay);

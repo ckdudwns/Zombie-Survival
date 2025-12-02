@@ -28,81 +28,82 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        ShowStartUI();
+        // [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+        // ShowStartUI();  <-- ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Ö¼ï¿½ Ã³ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½
+        StartGame();    // <-- ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
+    // ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½î¿¡ ï¿½ï¿½È°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½ÜµÎ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
     public void ShowStartUI()
     {
-        startUIPanel.SetActive(true);
+        if (startUIPanel != null) startUIPanel.SetActive(true);
 
-        // °ÔÀÓ Á¤Áö
         Time.timeScale = 0f;
-
-        // Ä¿¼­ È°¼ºÈ­
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // Player ÀÔ·Â ¸·±â
         Player.isPaused = true;
 
-        // 2) ÀÎ°ÔÀÓ¿ë UI ºñÈ°¼ºÈ­
-        if (healthUI != null)
-            healthUI.SetActive(false);
-
-        if (ammoUI != null)
-            ammoUI.SetActive(false);
-
-
+        if (healthUI != null) healthUI.SetActive(false);
+        if (ammoUI != null) ammoUI.SetActive(false);
     }
 
     public void ShowFailUI()
     {
         failUIPanel.SetActive(true);
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½)
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ShowSuccessUI()
     {
         successUIPanel.SetActive(true);
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½)
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void UpdateHealth(int current, int max)
     {
-
+        // Ã¼ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½)
     }
 
     public void UpdateAmmo(int current, int max)
     {
-
+        // Åºï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½)
     }
 
     public void StartGame()
     {
-        // 1) ½ÃÀÛ UI ºñÈ°¼ºÈ­
+        // 1) ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (startUIPanel != null)
             startUIPanel.SetActive(false);
 
-        // °ÔÀÓ Àç°³
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³ (ï¿½Ã°ï¿½ ï¿½å¸§ ï¿½ï¿½ï¿½ï¿½È­)
         Time.timeScale = 1f;
 
-        // 2) ÀÎ°ÔÀÓ¿ë UI È°¼ºÈ­
+        // 2) ï¿½Î°ï¿½ï¿½Ó¿ï¿½ UI È°ï¿½ï¿½È­
         if (healthUI != null)
             healthUI.SetActive(true);
 
         if (ammoUI != null)
             ammoUI.SetActive(true);
 
-        // °ÔÀÓ ½ÃÀÛ ÇÃ·¡±× È°¼ºÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
         Player.isGameStarted = true;
 
+        // ï¿½ï¿½ï¿½ì½º Ä¿ï¿½ï¿½ ï¿½ï¿½×±ï¿½ (FPS ï¿½ï¿½ï¿½ï¿½ ï¿½î¿¡ï¿½ï¿½ ï¿½Ê¿ï¿½)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-
-        // ÇÃ·¹ÀÌ¾î ´Ù½Ã È°¼ºÈ­
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
         Player.isPaused = false;
 
-        //(+) ½ÃÀÛ Äù½ºÆ® °­Á¦·Î ½ÃÀÛ
-        QuestManager.instance.StartQuest("q00");
-
+        // (+) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // QuestManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        if (QuestManager.instance != null)
+        {
+            QuestManager.instance.StartQuest("q00");
+        }
     }
 }

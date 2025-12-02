@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; // [�߿�] NavMesh ����� ����ϱ� ���� �߰�
 
 public class ZombieSpawner : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject[] zombiePrefabs;
     public Transform player;
     public Camera playerCamera;
-    public LayerMask groundLayer;
+    // public LayerMask groundLayer; // Raycast�� ���̾�� �� �̻� �ʿ� �����ϴ�.
 
     [Header("Spawn Progression")]
     public int maxZombiesNearPlayer = 10;
@@ -38,16 +39,13 @@ public class ZombieSpawner : MonoBehaviour
         }
         SpawnInitialZombies(50);
 
-
         StartCoroutine(SpawnRoutine());
     }
-
 
     void SpawnInitialZombies(int count)
     {
         for (int i = 0; i < count; i++)
         {
-
             Vector3 randomPos = new Vector3(
                 Random.Range(-mapSize.x / 2, mapSize.x / 2),
                 0,
@@ -58,13 +56,11 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-
     IEnumerator SpawnRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
-
 
             if (currentZombieCount < maxZombiesNearPlayer)
             {
@@ -75,10 +71,8 @@ public class ZombieSpawner : MonoBehaviour
 
     void TrySpawnNearPlayer()
     {
-
         Vector2 randomCircle = Random.insideUnitCircle.normalized * Random.Range(minSpawnDist, maxSpawnDist);
         Vector3 spawnPos = player.position + new Vector3(randomCircle.x, 0, randomCircle.y);
-
 
         if (IsValidSpawnPosition(spawnPos, out Vector3 validPos))
         {
@@ -86,23 +80,23 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-
+    // [������] Raycast ��� NavMesh ������ Ȯ���ϴ� �Լ�
     bool IsValidSpawnPosition(Vector3 targetPos, out Vector3 validPos)
     {
         validPos = Vector3.zero;
 
-        RaycastHit hit;
-        if (Physics.Raycast(targetPos + Vector3.up * 5f, Vector3.down, out hit, 10f, groundLayer))
+        // NavMesh.SamplePosition(�˻�����ġ, ������庯��, �˻��ݰ�, ��������ũ)
+        // targetPos �ֺ� 5.0f �ݰ� ������ ���� ����� NavMesh ��ġ�� ã���ϴ�.
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, 5.0f, NavMesh.AllAreas))
         {
-            validPos = hit.point;
+            validPos = hit.position; // NavMesh ���� ��Ȯ�� ��ġ�� ������
 
+            // ȭ�� ������ üũ
             Vector3 viewportPoint = playerCamera.WorldToViewportPoint(validPos);
-
-
             bool isOnScreen = (viewportPoint.z > 0 &&
                                viewportPoint.x > 0 && viewportPoint.x < 1 &&
                                viewportPoint.y > 0 && viewportPoint.y < 1);
-
 
             if (!isOnScreen)
             {
@@ -121,6 +115,8 @@ public class ZombieSpawner : MonoBehaviour
         int randomIndex = Random.Range(0, zombiePrefabs.Length);
         return zombiePrefabs[randomIndex];
     }
+
+    // [������] ���� ������ NavMesh �������� ����
     void SpawnZombieAt(Vector3 pos, bool forceSpawn)
     {
         GameObject zombieToSpawn = GetRandomZombie();
@@ -129,31 +125,24 @@ public class ZombieSpawner : MonoBehaviour
 
         Debug.Log("Spawn Call");
 
-        if (forceSpawn)
+        NavMeshHit hit;
+        // ���� ����(�ʱ� ��ġ)�� ���� NavMesh ���� ������ŵ�ϴ�.
+        // �˻� ������ 10f�� �˳��ϰ� �־� ������ ���̰� �־ �ٴ��� ã�� �մϴ�.
+        if (NavMesh.SamplePosition(pos, out hit, 10.0f, NavMesh.AllAreas))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(pos + Vector3.up * 5f, Vector3.down, out hit, 10f, groundLayer))
-            {
-                Instantiate(zombieToSpawn, hit.point, Quaternion.identity);
-                currentZombieCount++;
-            }
-        }
-        else
-        {
-            Instantiate(zombieToSpawn, pos, Quaternion.identity);
+            Instantiate(zombieToSpawn, hit.position, Quaternion.identity);
             currentZombieCount++;
         }
+        // forceSpawn�� �ƴ� ���� �̹� IsValidSpawnPosition���� ��ġ�� ���������Ƿ� �׳� �����ص� ������,
+        // ������ ���� �� �������� �����ϰų�, ��Ȯ�� ��ġ�� �Ѱܹ޾Ҵٸ� �ٷ� �����ص� �˴ϴ�.
     }
-
 
     public void UpgradeDifficulty(int addMaxCount, float reduceInterval)
     {
         maxZombiesNearPlayer += addMaxCount;
         spawnInterval = Mathf.Max(0.5f, spawnInterval - reduceInterval);
-
         Debug.Log($"Max Zombie: {maxZombiesNearPlayer}, Spawn Interval: {spawnInterval}");
     }
-
 
     public void ZombieDied()
     {

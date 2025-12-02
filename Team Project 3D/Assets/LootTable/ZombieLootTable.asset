@@ -16,8 +16,8 @@ MonoBehaviour:
   - type: 0
     itemData: {fileID: 11400000, guid: 4cf31510a43f7d143818a273c8395ece, type: 2}
     ammoAmount: 0
-    dropChance: 50
+    dropChance: 100
   - type: 0
     itemData: {fileID: 11400000, guid: 1d6077ce322a74948bd98ca3c12c9460, type: 2}
     ammoAmount: 0
-    dropChance: 50
+    dropChance: 0
