@@ -27062,7 +27062,7 @@ PrefabInstance:
     - target: {fileID: 3585184160535082964, guid: c511a54576d91284ab6d66b0e73cd5cc, type: 3}
       propertyPath: doorServer
       value: 
-      objectReference: {fileID: 1908602347}
+      objectReference: {fileID: 6147862023283622331}
     - target: {fileID: 3585184160535082964, guid: c511a54576d91284ab6d66b0e73cd5cc, type: 3}
       propertyPath: doorTeleport
       value: 
