@@ -1,9 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.AI; // [필수] NavMeshAgent 사용
 
-// NavMeshAgent 컴포넌트가 없으면 자동으로 추가해줍니다.
-[RequireComponent(typeof(NavMeshAgent))]
+// 이 스크립트는 적(Enemy) 오브젝트에 추가합니다.
 public class Enemy : MonoBehaviour
 {
     [Header("타겟 설정")]
@@ -17,10 +15,9 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 15f;
     [Tooltip("이 거리 안으로 들어오면 이동을 멈추고 공격을 시작합니다.")]
     public float attackRange = 1.5f;
-    [Tooltip("적의 기본 이동 속도입니다.")]
-    public float moveSpeed = 3.5f; // NavMeshAgent에 적용될 기본 속도
-
-    // rotationSpeed는 NavMeshAgent의 Angular Speed를 쓰거나, 공격 시 회전에 사용됩니다.
+    [Tooltip("적의 이동 속도입니다.")]
+    public float moveSpeed; // 좀비마다 속도를 다르게 하기 위해 지정하지 않음
+    [Tooltip("적이 플레이어를 향해 회전하는 속도입니다.")]
     public float rotationSpeed = 10f;
 
     [Header("공격 설정")]
@@ -34,25 +31,15 @@ public class Enemy : MonoBehaviour
     [Tooltip("함정 발동 시 증가할 이동 속도")]
     public float frenzyMoveSpeed = 7f;
 
-<<<<<<< Updated upstream
-=======
-    public float frenzyDuration = 30f;
-
-    // [삭제됨] NavMeshAgent가 바닥 높이를 자동 조절하므로 groundLayer 관련 변수는 필요 없습니다.
-
->>>>>>> Stashed changes
     // --- Private 변수 ---
     private float originalDetectionRange;
     private float originalMoveSpeed;
     private Coroutine frenzyCoroutine;
     private Animator animator;
     private EnemyHealth enemyHealth;
-    private NavMeshAgent agent; // [추가] NavMeshAgent 참조
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>(); // 컴포넌트 가져오기
-
         if (hitbox != null)
         {
             hitbox.SetActive(false);
@@ -68,103 +55,58 @@ public class Enemy : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-=======
-    private void OnEnable()
-    {
-        GameEvent.OnUSBPicked += ActivateFrenzyMode;
-    }
-
-    private void OnDisable()
-    {
-        GameEvent.OnUSBPicked -= ActivateFrenzyMode;
-    }
-
->>>>>>> Stashed changes
     void Start()
     {
-        animator = GetComponent<Animator>();
-        enemyHealth = GetComponent<EnemyHealth>();
-
-        // NavMeshAgent 초기 설정
-        agent.speed = moveSpeed;
-        agent.stoppingDistance = attackRange - 0.1f; // 공격 사거리보다 살짝 앞에서 멈추게 설정
-        agent.updateRotation = true; // 이동 중 회전은 에이전트에게 맡김
-
-        // 능력치 백업
+        // 시작할 때 원래의 능력치를 저장해 둡니다.
         originalDetectionRange = detectionRange;
         originalMoveSpeed = moveSpeed;
+        animator = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     void Update()
     {
         if (player == null) return;
 
-<<<<<<< Updated upstream
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // 현재 detectionRange를 기준으로 플레이어 감지
-=======
-        // 게임 일시정지 체크
-        if ((DialogueUI.instance != null && DialogueUI.instance.isDialogueOpen) ||
-            (InventoryManager.instance != null && InventoryManager.instance.inventoryUIPanel.activeSelf) ||
-            Player.isPaused)
-        {
-            // 일시정지 시 에이전트도 멈춰야 함
-            if (agent.enabled) agent.isStopped = true;
-            animator.SetBool("isWalking", false);
-            return;
-        }
-
->>>>>>> Stashed changes
         if (enemyHealth != null && !enemyHealth.isDeath)
         {
-            // 에이전트가 다시 움직일 수 있게 설정
-            if (agent.enabled) agent.isStopped = false;
-
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-            // [변경] ApplyGroundSnapping() 제거됨 (Agent가 처리함)
-
             if (distanceToPlayer <= detectionRange)
             {
+                RotateTowardsPlayer();
+
                 if (distanceToPlayer > attackRange)
                 {
                     MoveTowardsPlayer();
                 }
                 else
                 {
-                    // 공격 범위 안이면 이동 멈춤
-                    agent.isStopped = true;
-                    animator.SetBool("isWalking", false);
-
-                    // 공격할 때는 플레이어를 바라보게 직접 회전 (Agent가 멈춰있으므로)
-                    RotateTowardsPlayer();
-
                     if (canAttack)
                     {
                         StartCoroutine(Attack());
+                    }
+                    else
+                    {
+                        animator.SetBool("isWalking", false);
                     }
                 }
             }
             else
             {
-                // 감지 범위 밖이면 멈춤
-                agent.isStopped = true;
                 animator.SetBool("isWalking", false);
             }
         }
         else
         {
-            // 죽었으면 에이전트 비활성화
-            agent.enabled = false;
             enabled = false;
         }
     }
 
     IEnumerator Attack()
     {
-        // Debug.Log(gameObject.name + " 공격!");
+        Debug.Log(gameObject.name + " 공격!");
         canAttack = false;
 
         if (animator != null) animator.SetTrigger("attack");
@@ -178,13 +120,10 @@ public class Enemy : MonoBehaviour
         canAttack = true;
     }
 
-<<<<<<< Updated upstream
     // --- TrapItem에서 호출할 공개 함수 ---
     public void ActivateFrenzyMode(float duration)
-=======
-    public void ActivateFrenzyMode()
->>>>>>> Stashed changes
     {
+        // 이미 다른 Frenzy 효과가 진행 중이라면 중지하고 새로 시작 (효과 시간 갱신)
         if (frenzyCoroutine != null)
         {
             StopCoroutine(frenzyCoroutine);
@@ -192,56 +131,45 @@ public class Enemy : MonoBehaviour
         frenzyCoroutine = StartCoroutine(FrenzyCoroutine(duration));
     }
 
-<<<<<<< Updated upstream
     // --- 효과를 잠시 적용했다가 되돌리는 코루틴 ---
     private IEnumerator FrenzyCoroutine(float duration)
-=======
-    private IEnumerator FrenzyCoroutine()
->>>>>>> Stashed changes
     {
         Debug.Log(gameObject.name + "가 광분 상태에 돌입!");
 
-        // [변경] 단순 변수뿐만 아니라 실제 에이전트 속도도 변경해야 함
+        // 능력치를 강화된 값으로 변경
         detectionRange = frenzyDetectionRange;
-        agent.speed = frenzyMoveSpeed;
+        moveSpeed = frenzyMoveSpeed;
 
-<<<<<<< Updated upstream
         // 효과 지속 시간만큼 대기
         yield return new WaitForSeconds(duration);
-=======
-        yield return new WaitForSeconds(frenzyDuration);
->>>>>>> Stashed changes
 
         Debug.Log(gameObject.name + "의 광분 상태가 해제됩니다.");
 
-        // [변경] 원래대로 복구
+        // 능력치를 원래 값으로 되돌림
         detectionRange = originalDetectionRange;
-        agent.speed = originalMoveSpeed;
+        moveSpeed = originalMoveSpeed;
 
-        frenzyCoroutine = null;
+        frenzyCoroutine = null; // 코루틴이 끝났음을 표시
     }
 
     void RotateTowardsPlayer()
     {
         Vector3 direction = player.position - transform.position;
         direction.y = 0;
-        if (direction != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     void MoveTowardsPlayer()
     {
         animator.SetBool("isWalking", true);
-
-        // [변경] 직접 Translate 하는 대신 목적지만 설정하면 알아서 이동함
-        agent.SetDestination(player.position);
+        // 현재 moveSpeed를 사용하므로, 광분 상태일 때는 자동으로 frenzyMoveSpeed가 적용됨
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
     private void OnDrawGizmosSelected()
     {
+        // 현재 detectionRange를 기준으로 기즈모를 그림 (광분 상태일 때 커짐)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 

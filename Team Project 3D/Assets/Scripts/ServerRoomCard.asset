@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: ServerRoomCard
   m_EditorClassIdentifier: 
   itemName: ServerRoomCard
-  icon: {fileID: 21300000, guid: b608f534679fb844eb16e109eab34aa0, type: 3}
+  icon: {fileID: 0}
   description: Item Description
-  isUsable: 0

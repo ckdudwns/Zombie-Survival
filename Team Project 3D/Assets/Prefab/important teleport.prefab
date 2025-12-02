@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7432336658783014079}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3822715885107593157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,6 +113,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
   linkedDoor: {fileID: 0}
-  isLocked: 1
-  lockedSound: {fileID: 8300000, guid: 9da68e11b4526ac46bf6df35dd49cd05, type: 3}
-  openSound: {fileID: 8300000, guid: 886bd4059388d5146ab7f549b8d561aa, type: 3}
