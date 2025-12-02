@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FlareHelicopterRescueV2 : MonoBehaviour
 {
@@ -7,9 +8,17 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
     [SerializeField] private Transform helicopter;
     [SerializeField] private Transform player;
 
-    [Header("착륙 지점 설정 (중요)")]
-    [Tooltip("헬리콥터가 착륙할 고정 위치입니다. 비워두면 플레어 쏜 위치로 옵니다.")]
+    // [복구됨] 착륙 지점 설정 변수
+    [Header("착륙 지점 설정")]
+    [Tooltip("헬리콥터가 착륙할 고정 위치. 비워두면 플레어 위치(Dynamic)를 사용합니다.")]
     [SerializeField] private Transform fixedLandingZone;
+
+    // [복구됨] 카메라 연출 설정 (이전에 추가된 기능)
+    [Header("카메라 연출 설정")]
+    [Tooltip("헬기 탈출 장면을 찍을 시네마틱 카메라")]
+    [SerializeField] private GameObject escapeCamera;
+    [Tooltip("원래 플레이어가 보고 있던 메인 카메라")]
+    [SerializeField] private GameObject mainPlayerCamera;
 
     [Header("프로펠러")]
     [SerializeField] private Transform propeller;
@@ -24,7 +33,7 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
     [SerializeField] private float flySpeed = 15f;
     [SerializeField] private float descendSpeed = 3f;
     [SerializeField] private float flyHeight = 25f;
-    [SerializeField] private float hoverHeight = 3f;   // 착륙 높이 (지면보다 약간 위)
+    [SerializeField] private float hoverHeight = 3f;
     [SerializeField] private float startDistance = 100f;
 
     [Header("상호작용 설정")]
@@ -41,8 +50,11 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
     private bool missionComplete = false;
     private float callTime;
     private float remainingTime;
-    private Vector3 flarePosition; // 실제 착륙할 목표 좌표
+    private Vector3 flarePosition;
     private bool hasFlarePosition = false;
+
+    // [CS0103 FIX] 헬기에 붙은 AudioSource 전역 변수 선언
+    private AudioSource heliAudioSource;
 
     private enum HelicopterState
     {
@@ -61,16 +73,34 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null) player = playerObj.transform;
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
         }
+
+        if (mainPlayerCamera == null && Camera.main != null)
+        {
+            mainPlayerCamera = Camera.main.gameObject;
+        }
+        if (escapeCamera != null) escapeCamera.SetActive(false);
 
         if (helicopter != null)
         {
             helicopter.position = new Vector3(0, -1000, 0);
             helicopter.gameObject.SetActive(false);
+
+            // [CS0103 FIX] Start에서 AudioSource 캐싱 및 3D 설정
+            heliAudioSource = helicopter.GetComponent<AudioSource>();
+            if (heliAudioSource != null)
+            {
+                heliAudioSource.loop = true; // 비행 내내 소리가 나야 함
+                heliAudioSource.playOnAwake = false;
+                heliAudioSource.spatialBlend = 1.0f; // 3D 사운드
+            }
         }
 
-        Debug.Log("🚁 헬리콥터 대기 중...");
+        Debug.Log("🚁 헬리콥터 대기 중... 플레어 발사 구역에서 플레어를 쏘세요!");
     }
 
     void Update()
@@ -104,7 +134,6 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
         }
     }
 
-    // 외부(총 등)에서 호출하는 함수
     public void CallHelicopter(Vector3 flarePos)
     {
         if (isCalled)
@@ -115,32 +144,35 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
 
         isCalled = true;
         callTime = Time.time;
-        hasFlarePosition = true;
 
-        // ★★★ [핵심 수정 부분] ★★★
         if (fixedLandingZone != null)
         {
-            // 고정된 착륙 지점이 있다면 그곳의 위치를 사용
             flarePosition = fixedLandingZone.position;
-            Debug.Log($"🎯 고정된 착륙장({fixedLandingZone.name})으로 좌표 설정됨: {flarePosition}");
+            Debug.Log($"🚁 고정 착륙 지점 사용: {flarePosition}");
         }
         else
         {
-            // 없다면 매개변수로 넘어온 위치(총 쏜 곳) 사용
             flarePosition = flarePos;
-            Debug.Log($"📍 플레어 위치로 좌표 설정됨: {flarePosition}");
+            Debug.Log($"🚁 플레어 위치 사용: {flarePosition}");
         }
-        // ★★★★★★★★★★★★★★★★★
+
+        hasFlarePosition = true;
 
         float waitTime = useTestTime ? testTime : arrivalTime;
         int minutes = Mathf.FloorToInt(waitTime / 60f);
         int seconds = Mathf.FloorToInt(waitTime % 60f);
 
-        Debug.Log($"📡 구조 헬리콥터 호출! 약 {minutes}분 {seconds}초 후 도착.");
+        Debug.Log($"📡 구조 헬리콥터 호출! 약 {minutes}분 {seconds}초 후 도착 예정!");
 
         if (helicopter != null)
         {
             helicopter.gameObject.SetActive(true);
+
+            // 3D 사운드 재생 시작
+            if (heliAudioSource != null && !heliAudioSource.isPlaying)
+            {
+                heliAudioSource.Play();
+            }
         }
     }
 
@@ -148,25 +180,21 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
     {
         if (!hasFlarePosition)
         {
-            Debug.LogError("❌ 착륙 위치 오류!");
+            Debug.LogError("❌ 착륙 위치를 찾을 수 없습니다!");
             yield break;
         }
 
         Debug.Log("🚁 헬리콥터 접근 중!");
         currentState = HelicopterState.Approaching;
 
-        // 시작 지점 계산 (목표 지점에서 일정 거리 떨어진 곳)
         Vector3 startPos = flarePosition + new Vector3(-startDistance, flyHeight, 0);
         helicopter.position = startPos;
-
-        // 1. 공중 목표 지점 (착륙장 바로 위)
         Vector3 targetPos = flarePosition + new Vector3(0, flyHeight, 0);
 
-        // 접근
+        // 접근 로직
         while (Vector3.Distance(helicopter.position, targetPos) > 2f)
         {
             helicopter.position = Vector3.MoveTowards(helicopter.position, targetPos, flySpeed * Time.deltaTime);
-
             Vector3 direction = (targetPos - helicopter.position).normalized;
             if (direction != Vector3.zero)
             {
@@ -176,10 +204,10 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("🚁 착륙 지점 도착! 하강 시작...");
+        Debug.Log("🚁 착륙 지점 도착! 하강 중...");
         currentState = HelicopterState.Landing;
 
-        // 2. 하강 목표 지점 (착륙장 바닥 + 호버링 높이)
+        // 하강 로직
         targetPos = flarePosition + new Vector3(0, hoverHeight, 0);
 
         while (Vector3.Distance(helicopter.position, targetPos) > 0.5f)
@@ -188,7 +216,7 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("🚁 착륙 완료! 탑승 대기.");
+        Debug.Log("🚁 착륙 완료! 헬리콥터로 가서 E키를 눌러 탑승하세요!");
         currentState = HelicopterState.WaitingForPlayer;
     }
 
@@ -203,17 +231,31 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
             if (!isPlayerNearby)
             {
                 isPlayerNearby = true;
-                Debug.Log("💡 [E] 키를 눌러 탈출하세요!");
+                Debug.Log("💡 [E] 키를 눌러 헬리콥터에 탑승하세요!");
             }
 
             if (Input.GetKeyDown(interactKey))
             {
+                if (QuestManager.instance != null)
+                {
+                    QuestManager.instance.PlayDialogueOnly("q09_heli_end");
+                    QuestManager.instance.ProcessHeliBoarding();
+                }
                 StartCoroutine(PlayerEscape());
             }
         }
         else
         {
-            if (isPlayerNearby) isPlayerNearby = false;
+            if (isPlayerNearby)
+            {
+                isPlayerNearby = false;
+                Debug.Log($"📍 헬리콥터까지 거리: {distance:F1}m");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log($"📍 헬리콥터까지 거리: {distance:F1}m");
         }
     }
 
@@ -222,13 +264,14 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
         missionComplete = true;
         currentState = HelicopterState.Escaping;
 
-        Debug.Log("🚁 탑승 완료! 이륙합니다.");
+        Debug.Log("🚁 탑승 완료! 탈출 중...");
 
+        // 1. 플레이어 조작 끄기 및 헬기에 태우기
         CharacterController charController = player.GetComponent<CharacterController>();
         if (charController != null) charController.enabled = false;
 
         player.SetParent(helicopter);
-        player.localPosition = new Vector3(0, -1.5f, 0); // 좌석 위치 조정 필요
+        player.localPosition = new Vector3(0, -1.5f, 0);
 
         MonoBehaviour[] playerScripts = player.GetComponents<MonoBehaviour>();
         foreach (var script in playerScripts)
@@ -241,10 +284,33 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
             }
         }
 
+        // 2. 플레이어 모델 및 충돌체 비활성화 (시야에서 완전히 숨김)
+        Renderer[] renderers = player.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            r.enabled = false;
+        }
+
+        Collider[] colliders = player.GetComponentsInChildren<Collider>();
+        foreach (Collider c in colliders)
+        {
+            c.enabled = false;
+        }
+
+        // 3. 카메라 전환 (시네마틱 뷰)
+        if (mainPlayerCamera != null) mainPlayerCamera.SetActive(false);
+        if (escapeCamera != null) escapeCamera.SetActive(true);
+
+        // 헬기 오디오 리스너 문제 해결
+        if (escapeCamera != null && escapeCamera.GetComponent<AudioListener>() == null)
+            escapeCamera.AddComponent<AudioListener>();
+
         yield return new WaitForSeconds(1.5f);
 
-        // 수직 상승
+        Debug.Log("🚁 이륙!");
         Vector3 targetPos = helicopter.position + new Vector3(0, flyHeight, 0);
+
+        // 상승 로직
         while (Vector3.Distance(helicopter.position, targetPos) > 1f)
         {
             helicopter.position = Vector3.MoveTowards(helicopter.position, targetPos, descendSpeed * 1.5f * Time.deltaTime);
@@ -253,9 +319,11 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        // 멀리 이동
-        targetPos = helicopter.position + new Vector3(100f, 20f, 100f);
+        Debug.Log("🚁 안전 지대로 이동!");
+        targetPos = helicopter.position + new Vector3(50f, 10f, 50f);
+
         float flyTime = 0f;
+        // 비행 로직 (5초 동안)
         while (flyTime < 5f)
         {
             helicopter.position = Vector3.MoveTowards(helicopter.position, targetPos, flySpeed * 1.2f * Time.deltaTime);
@@ -270,29 +338,58 @@ public class FlareHelicopterRescueV2 : MonoBehaviour
             yield return null;
         }
 
+        // 엔딩
         currentState = HelicopterState.MissionComplete;
         ShowEnding();
+
+        // 헬기 소리 끄기 (장면 전환 직전에)
+        if (heliAudioSource != null)
+        {
+            heliAudioSource.Stop();
+        }
     }
 
     void ShowEnding()
     {
+        Debug.Log("==========================================");
         Debug.Log(endingMessage);
-        if (endingUI != null) endingUI.SetActive(true);
+        Debug.Log("당신은 헬리콥터를 타고 무사히 탈출했습니다!");
+        Debug.Log("==========================================");
+
+        if (endingUI != null)
+        {
+            if (QuestManager.instance != null)
+            {
+                // QuestManager가 엔딩 씬 로드를 담당하므로, 여기서는 UI 대신 QuestManager를 호출하여 페이드아웃 시작
+                QuestManager.instance.QuestComplete("q09_heli_end");
+            }
+            else
+            {
+                endingUI.SetActive(true);
+            }
+        }
     }
 
     void OnDrawGizmos()
     {
-        // 고정 착륙 지점이 설정되어 있다면 그곳을 우선적으로 표시
-        Vector3 drawPos = (fixedLandingZone != null) ? fixedLandingZone.position : flarePosition;
+        if (!hasFlarePosition && fixedLandingZone == null) return;
 
-        if (fixedLandingZone != null || hasFlarePosition)
+        Vector3 drawPos = fixedLandingZone != null ? fixedLandingZone.position : flarePosition;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(drawPos, 2f);
+        Gizmos.DrawWireCube(drawPos + Vector3.up * hoverHeight, new Vector3(4f, 0.2f, 4f));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(drawPos + Vector3.up * hoverHeight, interactionDistance);
+
+        if (isCalled)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(drawPos, 1f);
-            Gizmos.DrawWireCube(drawPos + Vector3.up * hoverHeight, new Vector3(4f, 0.2f, 4f));
-
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(drawPos + Vector3.up * hoverHeight, interactionDistance);
+            Gizmos.color = Color.cyan;
+            Vector3 startPos = drawPos + new Vector3(-startDistance, flyHeight, 0);
+            Vector3 approachPos = drawPos + new Vector3(0, flyHeight, 0);
+            Gizmos.DrawLine(startPos, approachPos);
+            Gizmos.DrawLine(approachPos, drawPos + Vector3.up * hoverHeight);
         }
     }
 }
